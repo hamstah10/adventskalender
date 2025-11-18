@@ -43,6 +43,46 @@
                 <source>Download voucher</source>
                 <target>Gutschein herunterladen</target>
             </trans-unit>
+            <trans-unit id="management.title">
+                <source>Manage Calendar</source>
+                <target>Adventskalender verwalten</target>
+            </trans-unit>
+            <trans-unit id="management.back">
+                <source>Back to overview</source>
+                <target>Zurück zur Übersicht</target>
+            </trans-unit>
+            <trans-unit id="management.edit">
+                <source>Edit</source>
+                <target>Bearbeiten</target>
+            </trans-unit>
+            <trans-unit id="management.delete">
+                <source>Delete</source>
+                <target>Löschen</target>
+            </trans-unit>
+            <trans-unit id="management.new">
+                <source>New Door</source>
+                <target>Neues Türchen</target>
+            </trans-unit>
+            <trans-unit id="management.create">
+                <source>Create</source>
+                <target>Erstellen</target>
+            </trans-unit>
+            <trans-unit id="management.save">
+                <source>Save</source>
+                <target>Speichern</target>
+            </trans-unit>
+            <trans-unit id="management.cancel">
+                <source>Cancel</source>
+                <target>Abbrechen</target>
+            </trans-unit>
+            <trans-unit id="management.no_doors">
+                <source>No doors available</source>
+                <target>Noch keine Türchen vorhanden</target>
+            </trans-unit>
+            <trans-unit id="management.create_first">
+                <source>Create your first advent calendar door!</source>
+                <target>Erstelle jetzt dein erstes Adventskalender-Türchen!</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

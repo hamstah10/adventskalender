@@ -99,6 +99,26 @@
         <source>Weihnachtsmann</source>
         <target>Дед Мороз</target>
       </trans-unit>
-    </body>
-  </file>
-</xliff>
+      <trans-unit id="plugin.management.title">
+        <source>Adventskalender - Verwaltung</source>
+        <target>Адвент-календарь - Управление</target>
+      </trans-unit>
+      <trans-unit id="plugin.management.description">
+        <source>Frontend-Plugin zum Verwalten und Bearbeiten von Adventskalender-Türchen</source>
+        <target>Плагин для управления и редактирования дверец адвент-календаря в интерфейсе</target>
+      </trans-unit>
+      <trans-unit id="plugin.management.flexform.pageTitle">
+        <source>Seitentitel</source>
+        <target>Заголовок страницы</target>
+      </trans-unit>
+      <trans-unit id="plugin.management.flexform.itemsPerPage">
+        <source>Einträge pro Seite</source>
+        <target>Записей на странице</target>
+      </trans-unit>
+      <trans-unit id="plugin.management.flexform.allowDelete">
+        <source>Löschen erlauben</source>
+        <target>Разрешить удаление</target>
+      </trans-unit>
+      </body>
+      </file>
+      </xliff>

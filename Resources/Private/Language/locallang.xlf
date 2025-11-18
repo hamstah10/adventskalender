@@ -33,6 +33,36 @@
             <trans-unit id="voucher.download">
                 <source>Download voucher</source>
             </trans-unit>
+            <trans-unit id="management.title">
+                <source>Manage Calendar</source>
+            </trans-unit>
+            <trans-unit id="management.back">
+                <source>Back to overview</source>
+            </trans-unit>
+            <trans-unit id="management.edit">
+                <source>Edit</source>
+            </trans-unit>
+            <trans-unit id="management.delete">
+                <source>Delete</source>
+            </trans-unit>
+            <trans-unit id="management.new">
+                <source>New Door</source>
+            </trans-unit>
+            <trans-unit id="management.create">
+                <source>Create</source>
+            </trans-unit>
+            <trans-unit id="management.save">
+                <source>Save</source>
+            </trans-unit>
+            <trans-unit id="management.cancel">
+                <source>Cancel</source>
+            </trans-unit>
+            <trans-unit id="management.no_doors">
+                <source>No doors available</source>
+            </trans-unit>
+            <trans-unit id="management.create_first">
+                <source>Create your first advent calendar door!</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>

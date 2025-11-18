@@ -99,6 +99,15 @@
       <trans-unit id="plugin.management.description">
         <source>Frontend-Plugin zum Verwalten und Bearbeiten von Adventskalender-Türchen</source>
       </trans-unit>
+      <trans-unit id="plugin.management.flexform.pageTitle">
+        <source>Seitentitel</source>
+      </trans-unit>
+      <trans-unit id="plugin.management.flexform.itemsPerPage">
+        <source>Einträge pro Seite</source>
+      </trans-unit>
+      <trans-unit id="plugin.management.flexform.allowDelete">
+        <source>Löschen erlauben</source>
+      </trans-unit>
       </body>
       </file>
       </xliff>
