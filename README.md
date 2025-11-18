@@ -123,7 +123,12 @@ Alle Einstellungen sind über Site Sets konfigurierbar:
 | 🔴 Türchen Geschlossen - Farbe Start | Verlauf-Startfarbe gesperrt | #c31432 |
 | 🔴 Türchen Geschlossen - Farbe Ende | Verlauf-Endfarbe gesperrt | #d32f2f |
 | 🎵 Hintergrundmusik aktivieren | Musik ein/aus | Ein |
-| 🎵 Pfad zur Musikdatei | MP3-Dateipfad | (Standard-Pfad) |
+| 🎵 Pfad zur Musikdatei | MP3-Dateipfad | song_christmas.mp3 |
+| ⭐ Tag 24 (Heiligabend) - Farbe Start | Verlauf-Startfarbe für Türchen 24 | #ffd700 |
+| ⭐ Tag 24 (Heiligabend) - Farbe Ende | Verlauf-Endfarbe für Türchen 24 | #ff8c00 |
+| 🎅 Tag 6 (Nikolaus) - Farbe Start | Verlauf-Startfarbe für Türchen 6 | #ff0000 |
+| 🎅 Tag 6 (Nikolaus) - Farbe Ende | Verlauf-Endfarbe für Türchen 6 | #8b0000 |
+| ❄️ Schnee-Animation aktivieren | Schneeflocken-Animation ein/aus | Ein |
 
 ## Freigabe-Steuerung
 
