@@ -13,6 +13,14 @@ Eine vollständige TYPO3 v13 Extension für einen interaktiven Adventskalender m
 - ✅ Mehrsprachig (DE, EN, RU)
 - ✅ Individuelle Icons pro Tag
 
+### Frontend-Management Plugin
+- 🖥️ Verwaltung der Türchen direkt im Frontend
+- 🖥️ Tabellen-Übersicht aller Einträge
+- 🖥️ Einfaches Hinzufügen neuer Türchen
+- 🖥️ Bearbeiten und Löschen von Türchen
+- 🖥️ Status-Kontrolle (Aktiv/Inaktiv)
+- 🖥️ Responsive Design für Mobile & Desktop
+
 ### Gutschein-System
 - 🎁 Digitale Gutscheine für jedes Türchen
 - 🎁 Anpassbare Gutschein-Vorlage
@@ -70,6 +78,8 @@ php vendor/bin/typo3 cache:flush
 3. Plugin-Typ **"Adventskalender"** auswählen
 
 ### 3. Türchen anlegen
+
+#### Option A: Im Backend (klassisch)
 1. Im TYPO3 Backend → **List** Modul
 2. Ordner/Seite auswählen
 3. Neuen Datensatz **"Adventskalender Türchen"** erstellen
@@ -81,6 +91,16 @@ php vendor/bin/typo3 cache:flush
    - **Medien**: Bild, Video oder Audio
    - **Link**: Externe URL
    - **Gutschein**: Optional Gutschein erstellen
+
+#### Option B: Im Frontend (neu!)
+1. Seite erstellen/bearbeiten
+2. Plugin-Element **"Adventskalender - Verwaltung"** einfügen
+3. Verwaltungsfläche öffnet sich mit:
+   - 📋 Tabellen-Übersicht aller Türchen
+   - ➕ Button zum Erstellen neuer Türchen
+   - ✏️ Bearbeiten-Button pro Türchen
+   - 🗑️ Löschen-Button mit Bestätigung
+   - 📊 Status (Aktiv/Inaktiv) anzeigen
 
 ### 4. Gutschein erstellen (optional)
 Im Türchen-Datensatz:
@@ -159,7 +179,8 @@ Die Extension unterstützt vollständige Übersetzungen:
 adventskalender/
 ├── Classes/
 │   ├── Controller/
-│   │   └── AdventskalenderController.php
+│   │   ├── AdventskalenderController.php (Anzeige)
+│   │   └── ManagementController.php (Frontend-Verwaltung)
 │   ├── Domain/
 │   │   ├── Model/
 │   │   │   ├── Door.php
@@ -169,12 +190,17 @@ adventskalender/
 │   └── Hooks/
 │       └── PageRendererHook.php
 ├── Configuration/
+│   ├── FlexForms/
+│   │   ├── PluginSettings.xml (Anzeige-Plugin)
+│   │   └── ManagementSettings.xml (Management-Plugin)
 │   ├── Sets/
 │   │   └── Adventskalender/
 │   │       ├── config.yaml
 │   │       ├── setup.typoscript
 │   │       └── settings.definitions.typoscript
 │   └── TCA/
+│       ├── Overrides/
+│       │   └── tt_content.php
 │       ├── tx_adventskalender_domain_model_door.php
 │       └── tx_adventskalender_domain_model_voucher.php
 ├── Resources/
@@ -189,8 +215,12 @@ adventskalender/
 │   │   ├── Partials/
 │   │   │   └── Voucher.html
 │   │   └── Templates/
-│   │       └── Adventskalender/
-│   │           └── List.html
+│   │       ├── Adventskalender/
+│   │       │   └── List.html (Anzeige-Template)
+│   │       └── Management/
+│   │           ├── Index.html (Übersicht)
+│   │           ├── Edit.html (Bearbeiten)
+│   │           └── New.html (Erstellen)
 │   └── Public/
 │       ├── Animations/
 │       │   ├── santa-sleigh.html
@@ -213,6 +243,7 @@ adventskalender/
 ├── ext_emconf.php
 ├── ext_localconf.php
 ├── ext_tables.sql
+├── MANAGEMENT_PLUGIN.md
 ├── README.md
 ├── LICENSE
 └── CHANGELOG.md
@@ -234,11 +265,36 @@ Vor dem Upload ins TER bitte prüfen:
 - [ ] Keine Sicherheitslücken
 - [ ] Keine absoluten Pfade im Code
 
+## Frontend-Management Plugin
+
+Detaillierte Dokumentation zum Management-Plugin finden Sie in [MANAGEMENT_PLUGIN.md](MANAGEMENT_PLUGIN.md).
+
+Das Plugin bietet:
+- **Benutzerfreundliche Verwaltungsoberfläche** - Alle Türchen in einer übersichtlichen Tabelle
+- **Flexibles Bearbeiten** - Ändern Sie Titel, Beschreibung, Inhalt und Status
+- **Schnelles Erstellen** - Neue Türchen mit wenigen Klicks hinzufügen
+- **Sichere Löschung** - Mit Bestätigungsdialog zum Schutz vor Unfällen
+- **Responsive Design** - Funktioniert auf Desktop, Tablet und Smartphone
+
+### Einsatz des Management-Plugins
+
+1. Neue Seite für die Verwaltung erstellen (z.B. "/admin/adventskalender")
+2. Plugin-Element "Adventskalender - Verwaltung" einfügen
+3. Optional: Zugriff mit Benutzer-Authentifizierung schützen
+
+### FlexForm-Einstellungen
+
+Das Management-Plugin unterstützt diese Einstellungen:
+- **Seitentitel**: Anpassbar über FlexForm
+- **Einträge pro Seite**: Anzahl anzeigbarer Einträge
+- **Löschen erlauben**: Aktivierung/Deaktivierung der Löschfunktion
+
 ## Support & Bugs
 
 Bei Problemen oder Feature-Requests:
 - **E-Mail**: hamstahstudio@gmail.com
 - **Homepage**: https://www.hamstahstudio.de
+- **Dokumentation**: Siehe [MANAGEMENT_PLUGIN.md](MANAGEMENT_PLUGIN.md) für Frontend-Verwaltung
 
 ## Lizenz
 
