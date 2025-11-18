@@ -22,6 +22,6 @@ $EM_CONF[$_EXTKEY] = [
     'clearCacheOnLoad' => 1,
     'author' => 'Andre Sancken',
     'author_email' => 'hamstahstudio@gmail.com',
-    'author_company' => 'Hamstah',
-    'version' => '1.0.0',
+    'author_company' => 'Hamstah Studio',
+    'version' => '1.0.1',
 ];

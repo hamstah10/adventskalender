@@ -61,7 +61,7 @@
                             <f:for each="{doors}" as="door">
                                 <f:if condition="{door.day} == {dayNumber}">
                                     <div class="col-6 col-sm-4 col-md-3 col-lg-2 animate__animated animate__fadeInUp animate__faster" style="animation-delay: calc({iterator.index} * 0.05s);">
-                                        <f:if condition="{door.day} == 6">
+                                        <f:if condition="{door.day} == 6 || {door.day} == 24">
                                             <f:then>
                                                 <a href="#" class="door-card ribbon-box unlocked text-decoration-none {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.customStyle}', then: 'custom-style')}" onclick="openLightbox({door.uid}); return false;" style="{f:if(condition: '{door.customStyle}', then: 'background: linear-gradient(135deg, {door.customColorStart} 0%, {door.customColorEnd} 100%); {f:if(condition: \'{door.customBorderWidth} > 0\', then: \'border: {door.customBorderWidth}px solid {door.customBorderColor};\')}')};">
                                                   <div class="ribbon-two ribbon-two-primary"><span>🔥</span></div>
