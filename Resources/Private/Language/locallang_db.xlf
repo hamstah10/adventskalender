@@ -93,6 +93,12 @@
       <trans-unit id="plugin.calendar.description">
         <source>Zeigt einen Adventskalender mit 24 Türchen an</source>
       </trans-unit>
-    </body>
-  </file>
-</xliff>
+      <trans-unit id="plugin.management.title">
+        <source>Adventskalender - Verwaltung</source>
+      </trans-unit>
+      <trans-unit id="plugin.management.description">
+        <source>Frontend-Plugin zum Verwalten und Bearbeiten von Adventskalender-Türchen</source>
+      </trans-unit>
+      </body>
+      </file>
+      </xliff>

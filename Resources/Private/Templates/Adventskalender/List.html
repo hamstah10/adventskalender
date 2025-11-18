@@ -61,10 +61,10 @@
                             <f:for each="{doors}" as="door">
                                 <f:if condition="{door.day} == {dayNumber}">
                                     <div class="col-6 col-sm-4 col-md-3 col-lg-2 animate__animated animate__fadeInUp animate__faster" style="animation-delay: calc({iterator.index} * 0.05s);">
-                                        <f:if condition="{door.day} == 1 || {door.day} == 6">
+                                        <f:if condition="{door.day} == 6">
                                             <f:then>
                                                 <a href="#" class="door-card ribbon-box unlocked text-decoration-none {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.customStyle}', then: 'custom-style')}" onclick="openLightbox({door.uid}); return false;" style="{f:if(condition: '{door.customStyle}', then: 'background: linear-gradient(135deg, {door.customColorStart} 0%, {door.customColorEnd} 100%); {f:if(condition: \'{door.customBorderWidth} > 0\', then: \'border: {door.customBorderWidth}px solid {door.customBorderColor};\')}')};">
-                                                  <div class="ribbon-two ribbon-two-primary"><span>Sexy Hexy 🔥</span></div>
+                                                  <div class="ribbon-two ribbon-two-primary"><span>🔥</span></div>
                                                     <div class="door-inner">
                                                         <div class="door-number-badge {f:if(condition: '{door.day} == 24', then: 'bg-warning', else: 'bg-success')}">{door.day}</div>
                                                         <f:switch expression="{door.day}">
@@ -100,7 +100,7 @@
                                             <f:else>
                                                 <div class="door-card locked" onclick="playZonkSound()">
                                                     <div class="door-inner">
-                                                        <div class="door-number-badge bg-secondary">{door.day}</div>
+                                                        <div class="door-number-badge bg-info">{door.day}</div>
                         <div class="door-icon">🔒</div>                         
 <div class="door-locked-text"><f:translate key="LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:door.locked" /></div>
                                                     </div>

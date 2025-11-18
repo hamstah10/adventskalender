@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:flexform.sheet.general</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.pageTitle>
+                        <label>Seitentitel</label>
+                        <config>
+                            <type>input</type>
+                            <size>50</size>
+                            <max>255</max>
+                            <eval>trim</eval>
+                            <default>Adventskalender verwalten</default>
+                        </config>
+                    </settings.pageTitle>
+                    <settings.itemsPerPage>
+                        <label>Einträge pro Seite</label>
+                        <config>
+                            <type>number</type>
+                            <default>20</default>
+                            <range>
+                                <lower>1</lower>
+                                <upper>100</upper>
+                            </range>
+                        </config>
+                    </settings.itemsPerPage>
+                    <settings.allowDelete>
+                        <label>Löschen erlauben</label>
+                        <config>
+                            <type>checkbox</type>
+                            <renderType>checkboxToggle</renderType>
+                            <default>1</default>
+                        </config>
+                    </settings.allowDelete>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>
