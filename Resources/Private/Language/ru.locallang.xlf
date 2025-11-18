@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="ru" datatype="plaintext" original="messages" date="2025-11-15T12:00:00Z" product-name="adventskalender">
+        <header/>
+        <body>
+            <trans-unit id="title">
+                <source>Advent Calendar 2025</source>
+                <target>Адвент-календарь 2025</target>
+            </trans-unit>
+            <trans-unit id="subtitle">
+                <source>Open a new door every day and discover great surprises!</source>
+                <target>Открывайте каждый день новую дверцу и находите удивительные сюрпризы!</target>
+            </trans-unit>
+            <trans-unit id="music.on">
+                <source>🎵 Music on</source>
+                <target>🎵 Включить музыку</target>
+            </trans-unit>
+            <trans-unit id="music.off">
+                <source>🔇 Music off</source>
+                <target>🔇 Выключить музыку</target>
+            </trans-unit>
+            <trans-unit id="door.open">
+                <source>Open!</source>
+                <target>Открыть!</target>
+            </trans-unit>
+            <trans-unit id="door.locked">
+                <source>Still locked</source>
+                <target>Еще закрыто</target>
+            </trans-unit>
+            <trans-unit id="door.number">
+                <source>Door</source>
+                <target>Дверца</target>
+            </trans-unit>
+            <trans-unit id="link.open">
+                <source>Open link</source>
+                <target>Открыть ссылку</target>
+            </trans-unit>
+            <trans-unit id="close">
+                <source>Close</source>
+                <target>Закрыть</target>
+            </trans-unit>
+            <trans-unit id="voucher.download">
+                <source>Download voucher</source>
+                <target>Скачать сертификат</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <sheetTitle>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:flexform.sheet.general</sheetTitle>
+                <type>array</type>
+                <el>
+                    <settings.customTitle>
+                        <label>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:flexform.customTitle</label>
+                        <config>
+                            <type>input</type>
+                            <size>50</size>
+                            <max>255</max>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.customTitle>
+                    <settings.customDescription>
+                        <label>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:flexform.customDescription</label>
+                        <config>
+                            <type>text</type>
+                            <cols>40</cols>
+                            <rows>3</rows>
+                            <eval>trim</eval>
+                        </config>
+                    </settings.customDescription>
+                    <settings.backgroundImage>
+                        <label>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:flexform.backgroundImage</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items>
+                                <numIndex index="0">
+                                    <label>Standard</label>
+                                    <value></value>
+                                </numIndex>
+                                <numIndex index="1">
+                                    <label>Weihnachtsdorf</label>
+                                    <value>weihnachtsdorf.jpg</value>
+                                </numIndex>
+                                <numIndex index="2">
+                                    <label>Adventcal BG1</label>
+                                    <value>adventcal_bg.jpg</value>
+                                </numIndex>
+                                <numIndex index="3">
+                                    <label>Adventcal BG2</label>
+                                    <value>adventcal_bg2.jpg</value>
+                                </numIndex>
+                                <numIndex index="4">
+                                    <label>Adventcal BG3</label>
+                                    <value>adventcal_bg3.jpg</value>
+                                </numIndex>
+                                <numIndex index="5">
+                                    <label>Adventcal BG4</label>
+                                    <value>night_blue.jpg</value>
+                                </numIndex>
+                                <numIndex index="6">
+                                    <label>Adventcal BG5</label>
+                                    <value>bg_holz.jpg</value>
+                                </numIndex>
+                            </items>
+                        </config>
+                    </settings.backgroundImage>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

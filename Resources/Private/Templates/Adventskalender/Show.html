@@ -1,0 +1,53 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Content">
+    <div class="adventskalender-wrapper">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="door-detail-card">
+                        <div class="card border-0 shadow-lg">
+                            <div class="card-header bg-danger text-white text-center py-4">
+                                <div class="display-1 mb-2">🎁</div>
+                                <h1 class="display-5 fw-bold mb-0">Türchen {door.day}</h1>
+                                <p class="lead mb-0 mt-2">{door.title}</p>
+                            </div>
+                            
+                            <div class="card-body p-4">
+                                <f:if condition="{door.image}">
+                                    <div class="door-image mb-4">
+                                        <f:image image="{door.image}" alt="{door.title}" class="img-fluid rounded shadow" />
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.description}">
+                                    <div class="door-description mb-4">
+                                        <div class="alert alert-info">
+                                            <i class="bi bi-info-circle"></i> {door.description}
+                                        </div>
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.content}">
+                                    <div class="door-content">
+                                        <f:format.html>{door.content}</f:format.html>
+                                    </div>
+                                </f:if>
+                            </div>
+                            
+                            <div class="card-footer bg-light text-center py-3">
+                                <f:link.action action="list" class="btn btn-danger btn-lg px-5">
+                                    <i class="bi bi-arrow-left"></i> Zurück zum Kalender
+                                </f:link.action>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</f:section>
+
+</html>

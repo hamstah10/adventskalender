@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns="urn:oasis:names:tc:xliff:document:1.0">
+  <file source-language="de" datatype="plaintext" original="messages" date="2025-11-15T12:00:00Z" product-name="adventskalender">
+    <header/>
+    <body>
+      <trans-unit id="tx_adventskalender_domain_model_door">
+        <source>Adventskalender Türchen</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.day">
+        <source>Tag (1-24)</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.title">
+        <source>Titel</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.description">
+        <source>Beschreibung</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.image">
+        <source>Bild</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.content">
+        <source>Inhalt</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.is_active">
+        <source>Aktiv</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.video">
+        <source>Video</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.audio">
+        <source>Audio</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.link">
+        <source>Link</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.voucher">
+        <source>Gutschein</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.custom_style">
+        <source>Individuelles Design aktivieren</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.custom_color_start">
+        <source>Farbe Start (Verlauf)</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.custom_color_end">
+        <source>Farbe Ende (Verlauf)</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.custom_border_color">
+        <source>Rahmen-Farbe</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.custom_border_width">
+        <source>Rahmen-Breite (px)</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher">
+        <source>Gutschein</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.headline">
+        <source>Überschrift</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.for_name">
+        <source>Für (Name)</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.description">
+        <source>Beschreibung (wofür)</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.from_name">
+        <source>Von (Name)</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.design">
+        <source>Design</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.design.classic">
+        <source>Klassisch (gestrichelt)</source>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.design.santa">
+        <source>Weihnachtsmann</source>
+      </trans-unit>
+      <trans-unit id="plugin.calendar.title">
+        <source>Adventskalender</source>
+      </trans-unit>
+      <trans-unit id="flexform.sheet.general">
+        <source>Einstellungen</source>
+      </trans-unit>
+      <trans-unit id="flexform.backgroundImage">
+        <source>Hintergrundbild</source>
+      </trans-unit>
+      <trans-unit id="flexform.customTitle">
+        <source>Überschrift (optional)</source>
+      </trans-unit>
+      <trans-unit id="flexform.customDescription">
+        <source>Beschreibungstext (optional)</source>
+      </trans-unit>
+      <trans-unit id="plugin.calendar.description">
+        <source>Zeigt einen Adventskalender mit 24 Türchen an</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

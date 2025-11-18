@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#8b4513"/>
+  <circle cx="48" cy="32" r="3" fill="#ffd700"/>
+  <text x="15" y="45" font-size="35" fill="white" font-weight="bold">🎁</text>
+</svg>

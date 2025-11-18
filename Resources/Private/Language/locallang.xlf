@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2025-11-15T12:00:00Z" product-name="adventskalender">
+        <header/>
+        <body>
+            <trans-unit id="title">
+                <source>Advent Calendar 2025</source>
+            </trans-unit>
+            <trans-unit id="subtitle">
+                <source>Open a new door every day and discover great surprises!</source>
+            </trans-unit>
+            <trans-unit id="music.on">
+                <source>🎵 Music on</source>
+            </trans-unit>
+            <trans-unit id="music.off">
+                <source>🔇 Music off</source>
+            </trans-unit>
+            <trans-unit id="door.open">
+                <source>Open!</source>
+            </trans-unit>
+            <trans-unit id="door.locked">
+                <source>Still locked</source>
+            </trans-unit>
+            <trans-unit id="door.number">
+                <source>Door</source>
+            </trans-unit>
+            <trans-unit id="link.open">
+                <source>Open link</source>
+            </trans-unit>
+            <trans-unit id="close">
+                <source>Close</source>
+            </trans-unit>
+            <trans-unit id="voucher.download">
+                <source>Download voucher</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

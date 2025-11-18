@@ -1,0 +1,21 @@
+# TYPO3 Adventskalender Extension
+
+Vollständige Dokumentation siehe README.md
+
+## Schnellstart
+
+1. Extension installieren
+2. Site Set "🎄 Adventskalender" zur Site hinzufügen
+3. Einstellungen in Site → Settings anpassen
+4. Plugin auf einer Seite einfügen
+5. Türchen im Backend anlegen (List-Modul)
+
+## Wichtig
+
+- TYPO3 v13.4+ erforderlich
+- PHP 8.2+ erforderlich
+- Site Set muss aktiviert sein für korrekte Funktion
+
+## Support
+
+hamstahstudio@gmail.com

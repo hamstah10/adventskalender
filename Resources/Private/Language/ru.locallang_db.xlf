@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns="urn:oasis:names:tc:xliff:document:1.0">
+  <file source-language="de" target-language="ru" datatype="plaintext" original="messages" date="2025-11-16T12:00:00Z" product-name="adventskalender">
+    <header/>
+    <body>
+      <trans-unit id="tx_adventskalender_domain_model_door">
+        <source>Adventskalender Türchen</source>
+        <target>Дверца адвент-календаря</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.day">
+        <source>Tag (1-24)</source>
+        <target>День (1-24)</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.title">
+        <source>Titel</source>
+        <target>Название</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.description">
+        <source>Beschreibung</source>
+        <target>Описание</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.image">
+        <source>Bild</source>
+        <target>Изображение</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.content">
+        <source>Inhalt</source>
+        <target>Содержание</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.is_active">
+        <source>Aktiv</source>
+        <target>Активно</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.video">
+        <source>Video</source>
+        <target>Видео</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.audio">
+        <source>Audio</source>
+        <target>Аудио</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.link">
+        <source>Link</source>
+        <target>Ссылка</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.voucher">
+        <source>Gutschein</source>
+        <target>Подарочный сертификат</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.custom_style">
+        <source>Individuelles Design aktivieren</source>
+        <target>Включить индивидуальный дизайн</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.custom_color_start">
+        <source>Farbe Start (Verlauf)</source>
+        <target>Начальный цвет (градиент)</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.custom_color_end">
+        <source>Farbe Ende (Verlauf)</source>
+        <target>Конечный цвет (градиент)</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.custom_border_color">
+        <source>Rahmen-Farbe</source>
+        <target>Цвет рамки</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_door.custom_border_width">
+        <source>Rahmen-Breite (px)</source>
+        <target>Толщина рамки (px)</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher">
+        <source>Gutschein</source>
+        <target>Подарочный сертификат</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.headline">
+        <source>Überschrift</source>
+        <target>Заголовок</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.for_name">
+        <source>Für (Name)</source>
+        <target>Кому (Имя)</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.description">
+        <source>Beschreibung (wofür)</source>
+        <target>Описание (для чего)</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.from_name">
+        <source>Von (Name)</source>
+        <target>От кого (Имя)</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.design">
+        <source>Design</source>
+        <target>Дизайн</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.design.classic">
+        <source>Klassisch (gestrichelt)</source>
+        <target>Классический (пунктирный)</target>
+      </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.design.santa">
+        <source>Weihnachtsmann</source>
+        <target>Дед Мороз</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

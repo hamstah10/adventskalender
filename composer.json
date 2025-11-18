@@ -1,0 +1,47 @@
+{
+  "name": "hamstah/adventskalender",
+  "type": "typo3-cms-extension",
+  "description": "Interaktiver Adventskalender für TYPO3 v13 mit Gutschein-System, Multimedia-Support und Site Set Integration",
+  "homepage": "https://www.hamstahstudio.de",
+  "license": ["GPL-2.0-or-later"],
+  "keywords": [
+    "TYPO3",
+    "TYPO3 CMS",
+    "Adventskalender",
+    "Advent Calendar",
+    "Christmas",
+    "Weihnachten",
+    "Gutschein",
+    "Voucher"
+  ],
+  "authors": [
+    {
+      "name": "Andre Sancken",
+      "email": "hamstahstudio@gmail.com",
+      "homepage": "https://www.hamstahstudio.de",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "typo3/cms-core": "^13.4",
+    "typo3/cms-extbase": "^13.4",
+    "typo3/cms-fluid": "^13.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Hamstah\\Adventskalender\\": "Classes/"
+    }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "adventskalender",
+      "site-sets": [
+        "EXT:adventskalender/Configuration/Sets/"
+      ]
+    }
+  },
+  "support": {
+    "email": "hamstahstudio@gmail.com"
+  }
+}

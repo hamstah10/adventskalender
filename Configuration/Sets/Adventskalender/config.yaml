@@ -1,0 +1,75 @@
+name: hamstah/adventskalender
+label: 🎄 Adventskalender
+
+settingsDefinitions:
+  adventskalender.voucherHeadline:
+    type: string
+    default: 'Geschenkgutschein'
+    label: '🎁 Gutschein Überschrift'
+    description: 'Text der als Überschrift auf jedem Gutschein angezeigt wird'
+  
+  adventskalender.doorUnlockedColorStart:
+    type: color
+    default: '#0f7c3c'
+    label: '🟢 Türchen Offen - Farbe Start'
+    description: 'Startfarbe des Verlaufs für geöffnete Türchen'
+  
+  adventskalender.doorUnlockedColorEnd:
+    type: color
+    default: '#2d5016'
+    label: '🟢 Türchen Offen - Farbe Ende'
+    description: 'Endfarbe des Verlaufs für geöffnete Türchen'
+  
+  adventskalender.doorLockedColorStart:
+    type: color
+    default: '#c31432'
+    label: '🔴 Türchen Geschlossen - Farbe Start'
+    description: 'Startfarbe des Verlaufs für geschlossene Türchen'
+  
+  adventskalender.doorLockedColorEnd:
+    type: color
+    default: '#d32f2f'
+    label: '🔴 Türchen Geschlossen - Farbe Ende'
+    description: 'Endfarbe des Verlaufs für geschlossene Türchen'
+  
+  adventskalender.musicEnabled:
+    type: bool
+    default: true
+    label: '🎵 Hintergrundmusik aktivieren'
+    description: 'Aktiviert oder deaktiviert die Hintergrundmusik'
+  
+  adventskalender.musicPath:
+    type: string
+    default: '/_assets/650af2e25ff4c4dcc48a2c838cf21ed4/Music/song_christmas.mp3'
+    label: 'Pfad zur Musikdatei'
+    description: 'Pfad zur MP3-Datei der Hintergrundmusik'
+  
+  adventskalender.specialChristmasColorStart:
+    type: color
+    default: '#ffd700'
+    label: '⭐ Tag 24 (Heiligabend) - Farbe Start'
+    description: 'Startfarbe für Türchen 24'
+  
+  adventskalender.specialChristmasColorEnd:
+    type: color
+    default: '#ff8c00'
+    label: '⭐ Tag 24 (Heiligabend) - Farbe Ende'
+    description: 'Endfarbe für Türchen 24'
+  
+  adventskalender.specialNikolausColorStart:
+    type: color
+    default: '#ff0000'
+    label: '🎅 Tag 6 (Nikolaus) - Farbe Start'
+    description: 'Startfarbe für Türchen 6'
+  
+  adventskalender.specialNikolausColorEnd:
+    type: color
+    default: '#8b0000'
+    label: '🎅 Tag 6 (Nikolaus) - Farbe Ende'
+    description: 'Endfarbe für Türchen 6'
+  
+  adventskalender.snowEnabled:
+    type: bool
+    default: true
+    label: '❄️ Schnee-Animation aktivieren'
+    description: 'Aktiviert oder deaktiviert die Schneeflocken-Animation'

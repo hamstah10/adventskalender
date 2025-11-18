@@ -1,0 +1,34 @@
+plugin.tx_adventskalender {
+    settings {
+        voucherHeadline = Geschenkgutschein
+        doorUnlockedColorStart = #0f7c3c
+        doorUnlockedColorEnd = #2d5016
+        doorLockedColorStart = #c31432
+        doorLockedColorEnd = #d32f2f
+        musicEnabled = 1
+        musicPath = /_assets/650af2e25ff4c4dcc48a2c838cf21ed4/Music/song_christmas.mp3
+        specialChristmasColorStart = #ffd700
+        specialChristmasColorEnd = #ff8c00
+        specialNikolausColorStart = #ff0000
+        specialNikolausColorEnd = #8b0000
+        snowEnabled = 1
+    }
+}
+
+# Override mit Site Settings, falls vorhanden
+[traverse(site, 'configuration.settings.adventskalender')]
+    plugin.tx_adventskalender.settings {
+        voucherHeadline = {site:settings.adventskalender.voucherHeadline}
+        doorUnlockedColorStart = {site:settings.adventskalender.doorUnlockedColorStart}
+        doorUnlockedColorEnd = {site:settings.adventskalender.doorUnlockedColorEnd}
+        doorLockedColorStart = {site:settings.adventskalender.doorLockedColorStart}
+        doorLockedColorEnd = {site:settings.adventskalender.doorLockedColorEnd}
+        musicEnabled = {site:settings.adventskalender.musicEnabled}
+        musicPath = {site:settings.adventskalender.musicPath}
+        specialChristmasColorStart = {site:settings.adventskalender.specialChristmasColorStart}
+        specialChristmasColorEnd = {site:settings.adventskalender.specialChristmasColorEnd}
+        specialNikolausColorStart = {site:settings.adventskalender.specialNikolausColorStart}
+        specialNikolausColorEnd = {site:settings.adventskalender.specialNikolausColorEnd}
+        snowEnabled = {site:settings.adventskalender.snowEnabled}
+    }
+[END]

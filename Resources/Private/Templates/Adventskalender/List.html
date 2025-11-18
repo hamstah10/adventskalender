@@ -1,0 +1,267 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:layout name="Default" />
+
+<f:section name="Content">
+    <style>
+        :root {
+            --door-unlocked-start: {settings.doorUnlockedColorStart};
+            --door-unlocked-end: {settings.doorUnlockedColorEnd};
+            --door-locked-start: {settings.doorLockedColorStart};
+            --door-locked-end: {settings.doorLockedColorEnd};
+            --door-christmas-start: {settings.specialChristmasColorStart};
+            --door-christmas-end: {settings.specialChristmasColorEnd};
+            --door-nikolaus-start: {settings.specialNikolausColorStart};
+            --door-nikolaus-end: {settings.specialNikolausColorEnd};
+        }
+        <f:if condition="{settings.snowEnabled} == 0">
+        .snowflake {
+            display: none !important;
+        }
+        </f:if>
+    </style>
+    
+    <!-- Hintergrundmusik -->
+    <f:if condition="{settings.musicEnabled}">
+        <audio loop id="backgroundMusic">
+            <source src="{settings.musicPath}" type="audio/mpeg">
+        </audio>
+        
+        <button id="musicToggle" class="music-toggle-btn" onclick="toggleMusic()">
+            <f:translate key="LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:music.on" />
+        </button>
+    </f:if>
+    
+    <audio id="zonkSound">
+        <source src="/_assets/650af2e25ff4c4dcc48a2c838cf21ed4/Music/Zonk-sound.mp3" type="audio/mpeg">
+    </audio>
+    
+    <img src="/_assets/650af2e25ff4c4dcc48a2c838cf21ed4/Images/pferd.png" alt="Pferd" class="deco-horse">
+    <img src="/_assets/650af2e25ff4c4dcc48a2c838cf21ed4/Images/renntier.png" alt="Rentier" class="deco-reindeer">
+
+    <f:variable name="bgImageUrl">{f:if(condition: '{settings.backgroundImage}', then: '{f:uri.resource(path: \'EXT:adventskalender/Resources/Public/Images/{settings.backgroundImage}\')}')}</f:variable>
+    <div class="adventskalender-wrapper p-1 p-lg-5" style="{f:if(condition: '{settings.backgroundImage}', then: 'background-image: url({bgImageUrl});')}">
+       <div class="container">
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold mb-3 animate__animated animate__fadeInDown">
+                    <span class="christmas-icon">🎄</span> 
+                    {f:if(condition: '{settings.customTitle}', then: '{settings.customTitle}', else: '{f:translate(key: \'LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:title\')}')}
+                    <span class="christmas-icon">🎄</span>
+                </h1>
+                <p class="lead animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                    {f:if(condition: '{settings.customDescription}', then: '{settings.customDescription}', else: '{f:translate(key: \'LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:subtitle\')}')}
+                </p>
+            </div>
+            
+            <div class="row g-4">
+               
+                        <f:variable name="doorOrder" value="{0: 12, 1: 5, 2: 18, 3: 1, 4: 21, 5: 9, 6: 15, 7: 3, 8: 24, 9: 7, 10: 14, 11: 20, 12: 2, 13: 16, 14: 11, 15: 6, 16: 23, 17: 8, 18: 19, 19: 4, 20: 13, 21: 10, 22: 22, 23: 17}" />
+                
+                        <f:for each="{doorOrder}" as="dayNumber" iteration="iterator">
+                            <f:for each="{doors}" as="door">
+                                <f:if condition="{door.day} == {dayNumber}">
+                                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 animate__animated animate__fadeInUp animate__faster" style="animation-delay: calc({iterator.index} * 0.05s);">
+                                        <f:if condition="{door.day} == 1 || {door.day} == 6">
+                                            <f:then>
+                                                <a href="#" class="door-card ribbon-box unlocked text-decoration-none {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.customStyle}', then: 'custom-style')}" onclick="openLightbox({door.uid}); return false;" style="{f:if(condition: '{door.customStyle}', then: 'background: linear-gradient(135deg, {door.customColorStart} 0%, {door.customColorEnd} 100%); {f:if(condition: \'{door.customBorderWidth} > 0\', then: \'border: {door.customBorderWidth}px solid {door.customBorderColor};\')}')};">
+                                                  <div class="ribbon-two ribbon-two-primary"><span>Sexy Hexy 🔥</span></div>
+                                                    <div class="door-inner">
+                                                        <div class="door-number-badge {f:if(condition: '{door.day} == 24', then: 'bg-warning', else: 'bg-success')}">{door.day}</div>
+                                                        <f:switch expression="{door.day}">
+                                                            <f:case value="1"><div class="door-icon">🎁</div></f:case>
+                                                            <f:case value="2"><div class="door-icon">⭐</div></f:case>
+                                                            <f:case value="3"><div class="door-icon">❄️</div></f:case>
+                                                            <f:case value="4"><div class="door-icon">🔔</div></f:case>
+                                                            <f:case value="5"><div class="door-icon">🕯️</div></f:case>
+                                                            <f:case value="6"><div class="door-icon">🎅</div></f:case>
+                                                            <f:case value="7"><div class="door-icon">🦌</div></f:case>
+                                                            <f:case value="8"><div class="door-icon">⛄</div></f:case>
+                                                            <f:case value="9"><div class="door-icon">🎶</div></f:case>
+                                                            <f:case value="10"><div class="door-icon">🌟</div></f:case>
+                                                            <f:case value="11"><div class="door-icon">🧦</div></f:case>
+                                                            <f:case value="12"><div class="door-icon">🍪</div></f:case>
+                                                            <f:case value="13"><div class="door-icon">🎀</div></f:case>
+                                                            <f:case value="14"><div class="door-icon">🏠</div></f:case>
+                                                            <f:case value="15"><div class="door-icon">🎵</div></f:case>
+                                                            <f:case value="16"><div class="door-icon">🥾</div></f:case>
+                                                            <f:case value="17"><div class="door-icon">🪔</div></f:case>
+                                                            <f:case value="18"><div class="door-icon">🎊</div></f:case>
+                                                            <f:case value="19"><div class="door-icon">🎉</div></f:case>
+                                                            <f:case value="20"><div class="door-icon">🎺</div></f:case>
+                                                            <f:case value="21"><div class="door-icon">👼</div></f:case>
+                                                            <f:case value="22"><div class="door-icon">🎀</div></f:case>
+                                                            <f:case value="23"><div class="door-icon">⛪</div></f:case>
+                                                            <f:case value="24"><div class="door-icon">🎄</div></f:case>
+                                                        </f:switch>
+                                                        <div class="door-title">{door.title}</div>
+                                                    </div>
+                                                </a>
+                                            </f:then>
+                                            <f:else>
+                                                <div class="door-card locked" onclick="playZonkSound()">
+                                                    <div class="door-inner">
+                                                        <div class="door-number-badge bg-secondary">{door.day}</div>
+                                                        <img src="/_assets/650af2e25ff4c4dcc48a2c838cf21ed4/Images/Icons/hamstah_mittelfinger.png" alt="Gesperrt" class="door-lock-icon">
+                                                        <div class="door-locked-text"><f:translate key="LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:door.locked" /></div>
+                                                    </div>
+                                                </div>
+                                            </f:else>
+                                        </f:if>
+                                    </div>
+                                </f:if>
+                            </f:for>
+                        </f:for>
+                    
+               
+            </div>
+       
+        
+        <f:for each="{doors}" as="door">
+            <div class="lightbox" id="lightbox{door.uid}" style="display: none;">
+                <div class="lightbox-overlay" onclick="closeLightbox({door.uid})"></div>
+                <div class="lightbox-content">
+                    <div class="lightbox-day-badge">{door.day}</div>
+                    <button class="lightbox-close" onclick="closeLightbox({door.uid})">&times;</button>
+                    <div class="lightbox-header">
+                        <h2 class="fs-3 fw-bold">
+                            <f:switch expression="{door.day}">
+                                <f:case value="1"><span class="lightbox-icon">🎁</span></f:case>
+                                <f:case value="2"><span class="lightbox-icon">⭐</span></f:case>
+                                <f:case value="3"><span class="lightbox-icon">❄️</span></f:case>
+                                <f:case value="4"><span class="lightbox-icon">🔔</span></f:case>
+                                <f:case value="5"><span class="lightbox-icon">🕯️</span></f:case>
+                                <f:case value="6"><span class="lightbox-icon">🎅</span></f:case>
+                                <f:case value="7"><span class="lightbox-icon">🦌</span></f:case>
+                                <f:case value="8"><span class="lightbox-icon">⛄</span></f:case>
+                                <f:case value="9"><span class="lightbox-icon">🎶</span></f:case>
+                                <f:case value="10"><span class="lightbox-icon">🌟</span></f:case>
+                                <f:case value="11"><span class="lightbox-icon">🧦</span></f:case>
+                                <f:case value="12"><span class="lightbox-icon">🍪</span></f:case>
+                                <f:case value="13"><span class="lightbox-icon">🎀</span></f:case>
+                                <f:case value="14"><span class="lightbox-icon">🏠</span></f:case>
+                                <f:case value="15"><span class="lightbox-icon">🎵</span></f:case>
+                                <f:case value="16"><span class="lightbox-icon">🥾</span></f:case>
+                                <f:case value="17"><span class="lightbox-icon">🪔</span></f:case>
+                                <f:case value="18"><span class="lightbox-icon">🎊</span></f:case>
+                                <f:case value="19"><span class="lightbox-icon">🎉</span></f:case>
+                                <f:case value="20"><span class="lightbox-icon">🎺</span></f:case>
+                                <f:case value="21"><span class="lightbox-icon">👼</span></f:case>
+                                <f:case value="22"><span class="lightbox-icon">🎀</span></f:case>
+                                <f:case value="23"><span class="lightbox-icon">⛪</span></f:case>
+                                <f:case value="24"><span class="lightbox-icon">🎄</span></f:case>
+                            </f:switch> {door.title}
+                        </h2>
+                    </div>
+                    <div class="lightbox-body">
+                        <div class="lightbox-grid">
+                            <div class="lightbox-content-col">
+                                <f:if condition="{door.image}">
+                                    <div class="door-image mb-4 text-center">
+                                        <f:image image="{door.image}" alt="{door.title}" class="img-fluid rounded shadow" style="max-height: 400px;" />
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.video}">
+                                    <div class="door-video mb-4 text-center">
+                                        <video controls class="w-100 rounded shadow" style="max-height: 400px;">
+                                            <source src="{door.video.originalResource.publicUrl}" type="{door.video.originalResource.mimeType}">
+                                            Dein Browser unterstützt keine Videos.
+                                        </video>
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.audio}">
+                                    <div class="door-audio mb-4">
+                                        <audio controls class="w-100">
+                                            <source src="{door.audio.originalResource.publicUrl}" type="{door.audio.originalResource.mimeType}">
+                                            Dein Browser unterstützt keine Audio-Dateien.
+                                        </audio>
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.description}">
+                                    <div class="door-description mb-4">
+                                        <div class="alert alert-danger bg-opacity-10 border-danger">
+                                            <i class="bi bi-info-circle"></i> {door.description}
+                                        </div>
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.content}">
+                                    <div class="door-content mb-4">
+                                        <f:format.html>{door.content}</f:format.html>
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.link}">
+                                    <div class="door-link text-center">
+                                        <a href="{door.link}" target="_blank" class="btn btn-outline-danger btn-lg">
+                                            <i class="bi bi-link-45deg"></i> <f:translate key="LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:link.open" />
+                                        </a>
+                                    </div>
+                                </f:if>
+                            </div>
+                            
+                            <div class="lightbox-voucher-col">
+                                <f:render partial="Voucher" arguments="{voucher: door.voucher, settings: settings, day: door.day}" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:for>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        let isPlaying = false;
+        function toggleMusic() {
+            const audio = document.getElementById('backgroundMusic');
+            const btn = document.getElementById('musicToggle');
+            if (isPlaying) {
+                audio.pause();
+                btn.innerHTML = '<f:translate key="LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:music.on" />';
+            } else {
+                audio.play();
+                btn.innerHTML = '<f:translate key="LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:music.off" />';
+            }
+            isPlaying = !isPlaying;
+        }
+        
+        function openLightbox(uid) {
+            document.getElementById('lightbox' + uid).style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox(uid) {
+            document.getElementById('lightbox' + uid).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        function playZonkSound() {
+            const zonk = document.getElementById('zonkSound');
+            zonk.currentTime = 0;
+            zonk.play();
+        }
+        
+        function downloadVoucher() {
+            const voucher = document.getElementById('voucherElement');
+            if (!voucher) return;
+            
+            html2canvas(voucher, {
+                backgroundColor: '#ffffff',
+                scale: 2,
+                logging: false
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Gutschein.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        }
+    </script>
+    
+</f:section>
+
+</html>
