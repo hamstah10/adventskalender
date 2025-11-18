@@ -170,8 +170,8 @@
 
 .door-card.locked {
     background: linear-gradient(135deg, 
-        rgba(195, 20, 50, 0.7) 0%, 
-        rgba(211, 47, 47, 0.7) 100%);
+        rgba(3, 9, 71, 0.7) 0%, 
+        rgba(60, 6, 148, 0.7) 100%);
     backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #ffd4d9;
