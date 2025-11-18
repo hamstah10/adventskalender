@@ -65,52 +65,73 @@
             background-color: #c82333;
         }
 
-        .doors-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .door-card {
+        .table-wrapper {
+            overflow-x: auto;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            background: white;
+            border-radius: 4px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s;
         }
 
-        .door-card:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        thead {
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #ddd;
+        }
+
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
         }
 
         .door-day {
-            font-size: 32px;
             font-weight: bold;
             color: #dc3545;
-            margin-bottom: 10px;
+            font-size: 16px;
         }
 
         .door-title {
-            font-size: 18px;
             font-weight: bold;
             color: #333;
-            margin-bottom: 10px;
         }
 
         .door-description {
             color: #666;
-            font-size: 14px;
-            margin-bottom: 10px;
-            line-height: 1.5;
+            font-size: 13px;
+            max-width: 300px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .door-status {
             padding: 5px 10px;
             border-radius: 4px;
             font-size: 12px;
-            margin-bottom: 15px;
+            font-weight: bold;
             display: inline-block;
+            white-space: nowrap;
         }
 
         .status-active {
@@ -125,8 +146,8 @@
 
         .door-actions {
             display: flex;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 8px;
+            white-space: nowrap;
         }
 
         .empty-state {
@@ -166,32 +187,49 @@
 
         <f:if condition="{doors}">
             <f:then>
-                <div class="doors-grid">
-                    <f:for each="{doors}" as="door">
-                        <div class="door-card">
-                            <div class="door-day">Türchen {door.day}</div>
-                            <div class="door-title">{door.title}</div>
-                            <div class="door-description">
-                                <f:if condition="{door.description}">
-                                    <f:then>{door.description -> f:format.crop(maxCharacters: 100)}</f:then>
-                                    <f:else><em>Keine Beschreibung</em></f:else>
-                                </f:if>
-                            </div>
-                            <div class="door-status {f:if(condition: '{door.isActive}', then: 'status-active', else: 'status-inactive')}">
-                                <f:if condition="{door.isActive}">
-                                    <f:then>✓ Aktiv</f:then>
-                                    <f:else>✗ Inaktiv</f:else>
-                                </f:if>
-                            </div>
-                            <div class="door-actions">
-                                <f:link.action action="edit" arguments="{door: door}" class="btn btn-edit">Bearbeiten</f:link.action>
-                                <form method="post" action="{f:uri.action(action: 'delete')}" style="display: inline; margin: 0;" onsubmit="return confirm('Möchtest du dieses Türchen wirklich löschen?');">
-                                    <input type="hidden" name="door[__identity]" value="{door.uid}">
-                                    <button type="submit" class="btn btn-delete">Löschen</button>
-                                </form>
-                            </div>
-                        </div>
-                    </f:for>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="8%">Tag</th>
+                                <th width="25%">Titel</th>
+                                <th width="35%">Beschreibung</th>
+                                <th width="12%">Status</th>
+                                <th width="20%">Aktionen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <f:for each="{doors}" as="door">
+                                <tr>
+                                    <td class="door-day">{door.day}</td>
+                                    <td class="door-title">{door.title}</td>
+                                    <td class="door-description">
+                                        <f:if condition="{door.description}">
+                                            <f:then>{door.description}</f:then>
+                                            <f:else><em>—</em></f:else>
+                                        </f:if>
+                                    </td>
+                                    <td>
+                                        <div class="door-status {f:if(condition: '{door.getIsActive}', then: 'status-active', else: 'status-inactive')}">
+                                            <f:if condition="{door.getIsActive}">
+                                                <f:then>✓ Aktiv</f:then>
+                                                <f:else>✗ Inaktiv</f:else>
+                                            </f:if>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="door-actions">
+                                            <f:link.action action="edit" arguments="{door: door}" class="btn btn-edit">Bearbeiten</f:link.action>
+                                            <f:form action="delete" method="post" style="display: inline; margin: 0;" onsubmit="return confirm('Möchtest du dieses Türchen wirklich löschen?');">
+                                                <f:form.hidden name="door" value="{door}" />
+                                                <button type="submit" class="btn btn-delete">Löschen</button>
+                                            </f:form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </f:for>
+                        </tbody>
+                    </table>
                 </div>
             </f:then>
             <f:else>

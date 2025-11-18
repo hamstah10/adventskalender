@@ -131,27 +131,27 @@
 
         <h1>🎄 Türchen {door.day} bearbeiten</h1>
 
-        <form method="post" action="{f:uri.action(action: 'update')}">
-            <input type="hidden" name="door[__identity]" value="{door.uid}">
+        <f:form action="update" method="post">
+            <f:form.hidden name="door" value="{door}" />
 
             <div class="section">
                 <h2>Grundinformationen</h2>
 
                 <div class="form-group">
                     <label for="day">Türchen-Nummer *</label>
-                    <input type="number" id="day" name="door[day]" value="{door.day}" min="1" max="31" required>
+                    <f:form.textfield id="day" property="door.day" type="number" min="1" max="31" required="required" />
                     <div class="help-text">Der Tag im Adventskalender (1-31)</div>
                 </div>
 
                 <div class="form-group">
                     <label for="title">Titel *</label>
-                    <input type="text" id="title" name="door[title]" value="{door.title}" required>
+                    <f:form.textfield id="title" property="door.title" required="required" />
                     <div class="help-text">Gib einen aussagekräftigen Titel ein</div>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Kurzbeschreibung</label>
-                    <textarea id="description" name="door[description]">{door.description}</textarea>
+                    <f:form.textarea id="description" property="door.description" />
                     <div class="help-text">Eine kurze Beschreibung (wird in der Übersicht angezeigt)</div>
                 </div>
             </div>
@@ -161,13 +161,13 @@
 
                 <div class="form-group">
                     <label for="content">Hauptinhalt</label>
-                    <textarea id="content" name="door[content]">{door.content}</textarea>
+                    <f:form.textarea id="content" property="door.content" />
                     <div class="help-text">Der Haupttext des Türchens (HTML erlaubt)</div>
                 </div>
 
                 <div class="form-group">
                     <label for="link">Link/URL</label>
-                    <input type="url" id="link" name="door[link]" value="{door.link}">
+                    <f:form.textfield id="link" property="door.link" type="url" />
                     <div class="help-text">z.B. https://example.com (optional)</div>
                 </div>
             </div>
@@ -176,7 +176,7 @@
                 <h2>Status</h2>
 
                 <div class="form-group">
-                    <input type="checkbox" id="isActive" name="door[isActive]" value="1" <f:if condition="{door.isActive}">checked</f:if>>
+                    <f:form.checkbox id="isActive" property="door.isActive" value="1" />
                     <label for="isActive" class="checkbox-label">Dieses Türchen ist aktiv</label>
                     <div class="help-text">Inaktive Türchen werden nicht angezeigt</div>
                 </div>
@@ -186,7 +186,7 @@
                 <button type="submit" class="btn btn-primary">Speichern</button>
                 <f:link.action action="index" class="btn btn-secondary">Abbrechen</f:link.action>
             </div>
-        </form>
+        </f:form>
     </div>
 </body>
 </html>

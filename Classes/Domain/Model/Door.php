@@ -75,6 +75,11 @@ class Door extends AbstractEntity
         $this->content = $content;
     }
 
+    public function getIsActive(): bool
+    {
+        return $this->isActive;
+    }
+
     public function isActive(): bool
     {
         return $this->isActive;
