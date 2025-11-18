@@ -26,7 +26,7 @@ class ManagementController extends ActionController
     public function editAction(?Door $door = null): ResponseInterface
     {
         if ($door === null) {
-            $this->redirect('index');
+            return $this->redirect('index');
         }
 
         $this->view->assign('door', $door);
@@ -43,7 +43,7 @@ class ManagementController extends ActionController
             ContextualFeedbackSeverity::OK
         );
 
-        $this->redirect('index');
+        return $this->redirect('index');
     }
 
     public function newAction(): ResponseInterface
@@ -63,7 +63,7 @@ class ManagementController extends ActionController
             ContextualFeedbackSeverity::OK
         );
 
-        $this->redirect('index');
+        return $this->redirect('index');
     }
 
     public function deleteAction(Door $door): ResponseInterface
@@ -76,6 +76,6 @@ class ManagementController extends ActionController
             ContextualFeedbackSeverity::OK
         );
 
-        $this->redirect('index');
+        return $this->redirect('index');
     }
 }

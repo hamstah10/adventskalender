@@ -220,8 +220,7 @@
                                     <td>
                                         <div class="door-actions">
                                             <f:link.action action="edit" arguments="{door: door}" class="btn btn-edit">Bearbeiten</f:link.action>
-                                            <f:form action="delete" method="post" style="display: inline; margin: 0;" onsubmit="return confirm('Möchtest du dieses Türchen wirklich löschen?');">
-                                                <f:form.hidden name="door" value="{door}" />
+                                            <f:form action="delete" method="post" object="{door}" name="door" style="display: inline; margin: 0;" onsubmit="return confirm('Möchtest du dieses Türchen wirklich löschen?');">
                                                 <button type="submit" class="btn btn-delete">Löschen</button>
                                             </f:form>
                                         </div>

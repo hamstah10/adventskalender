@@ -17,7 +17,7 @@ class Door extends AbstractEntity
     protected ?FileReference $video = null;
     protected ?FileReference $audio = null;
     protected string $link = '';
-    protected bool $isActive = false;
+    protected int $isActive = 0;
     protected ?Voucher $voucher = null;
     protected bool $customStyle = false;
     protected string $customColorStart = '';
@@ -77,15 +77,15 @@ class Door extends AbstractEntity
 
     public function getIsActive(): bool
     {
-        return $this->isActive;
+        return (bool)$this->isActive;
     }
 
     public function isActive(): bool
     {
-        return $this->isActive;
+        return (bool)$this->isActive;
     }
 
-    public function setIsActive(bool $isActive): void
+    public function setIsActive(int $isActive): void
     {
         $this->isActive = $isActive;
     }
