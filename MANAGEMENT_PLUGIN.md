@@ -84,6 +84,49 @@ Das Plugin nutzt inline-CSS mit folgenden Hauptklassen:
 - `.btn-primary`, `.btn-edit`, `.btn-delete` - Verschiedene Button-Typen
 - `.empty-state` - Anzeige wenn keine Türchen vorhanden
 
+## Farben und Konfiguration
+
+Die Farben des Adventskalenders werden über Site Settings konfiguriert und automatisch ins Frontend injiziert:
+
+### Via Site Settings (`config/sites/[sitename]/settings.yaml`)
+
+```yaml
+# Geschlossene Türchen
+adventskalender.doorLockedColorStart: '#c31432'
+adventskalender.doorLockedColorEnd: '#d32f2f'
+
+# Offene Türchen
+adventskalender.doorUnlockedColorStart: '#0f7c3c'
+adventskalender.doorUnlockedColorEnd: '#2d5016'
+
+# Spezielle Tage
+adventskalender.specialChristmasColorStart: '#ffd700'
+adventskalender.specialChristmasColorEnd: '#ff8c00'
+adventskalender.specialNikolausColorStart: '#ff0000'
+adventskalender.specialNikolausColorEnd: '#8b0000'
+```
+
+### CSS-Variablen im Frontend
+
+Die Site Settings werden automatisch in CSS-Variablen umgewandelt:
+
+```css
+:root {
+    --door-locked-start: /* doorLockedColorStart */;
+    --door-locked-end: /* doorLockedColorEnd */;
+    --door-unlocked-start: /* doorUnlockedColorStart */;
+    --door-unlocked-end: /* doorUnlockedColorEnd */;
+    --lightbox-accent: /* doorLockedColorStart */;
+    /* weitere Farben... */
+}
+```
+
+Diese Variablen beeinflussen:
+- **Türchen-Hintergrund**: Farbverlauf für gesperrte/geöffnete Türchen
+- **Lightbox**: Badge-, Button- und Gutschein-Farben
+- **Buttons**: Musik-Toggle, Download-Buttons
+- **Effekte**: Hover-Effekte und Glows
+
 ## Sicherheit
 
 Das Plugin nutzt TYPO3s eingebaute Extbase-Funktionen:

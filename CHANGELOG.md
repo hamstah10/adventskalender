@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2025-11-19
+
+### Added
+- Dynamic color configuration via Site Settings
+- CSS variable implementation for theme colors
+- Lightbox color customization
+- Voucher design customization
+- Complete documentation for color settings
+- Color configuration examples in README
+
+### Changed
+- Locked door colors now use CSS variables from Site Settings
+- Lightbox badges, buttons and vouchers now use configurable colors
+- Music toggle button respects theme colors
+- All hardcoded colors replaced with CSS variables
+
+### Technical
+- Added `--lightbox-accent` CSS variable
+- Updated `adventskalender.css` to use CSS variables throughout
+- Site settings now properly control Lightbox appearance
+- Colors cascade through all UI components
+
 ## [1.0.0] - 2025-11-16
 
 ### Added

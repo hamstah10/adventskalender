@@ -130,6 +130,50 @@ Alle Einstellungen sind über Site Sets konfigurierbar:
 | 🎅 Tag 6 (Nikolaus) - Farbe Ende | Verlauf-Endfarbe für Türchen 6 | #8b0000 |
 | ❄️ Schnee-Animation aktivieren | Schneeflocken-Animation ein/aus | Ein |
 
+### Farbeinstellungen pro Site
+
+Die Farben können für jede Site individuell in `config/sites/[sitename]/settings.yaml` konfiguriert werden:
+
+```yaml
+# Geschlossene Türchen Farben
+adventskalender.doorLockedColorStart: '#c31432'
+adventskalender.doorLockedColorEnd: '#d32f2f'
+
+# Offene Türchen Farben
+adventskalender.doorUnlockedColorStart: '#0f7c3c'
+adventskalender.doorUnlockedColorEnd: '#2d5016'
+
+# Spezielle Farben
+adventskalender.specialChristmasColorStart: '#ffd700'
+adventskalender.specialChristmasColorEnd: '#ff8c00'
+adventskalender.specialNikolausColorStart: '#ff0000'
+adventskalender.specialNikolausColorEnd: '#8b0000'
+
+# Weitere Einstellungen
+adventskalender.voucherHeadline: 'Geschenkgutschein'
+adventskalender.musicEnabled: true
+adventskalender.snowEnabled: true
+```
+
+### CSS-Implementierung der Farben
+
+Die Farben werden im Frontend als CSS-Variablen implementiert:
+
+- **`--door-unlocked-start`** - Startfarbe für geöffnete Türchen
+- **`--door-unlocked-end`** - Endfarbe für geöffnete Türchen  
+- **`--door-locked-start`** - Startfarbe für geschlossene Türchen
+- **`--door-locked-end`** - Endfarbe für geschlossene Türchen
+- **`--door-christmas-start`** - Startfarbe Heiligabend (Türchen 24)
+- **`--door-christmas-end`** - Endfarbe Heiligabend
+- **`--door-nikolaus-start`** - Startfarbe Nikolaus (Türchen 6)
+- **`--door-nikolaus-end`** - Endfarbe Nikolaus
+- **`--lightbox-accent`** - Akzentfarbe für Lightbox & Gutscheine
+
+Diese Variablen werden automatisch aus den Site Settings gespeist und beeinflussen:
+- **Türchen**: Hintergrund-Farbverlauf, Hover-Effekte
+- **Lightbox**: Badges, Buttons, Gutschein-Design
+- **Buttons**: Musik-Toggle, Download-Buttons
+
 ## Freigabe-Steuerung
 
 Die Freigabe der Türchen kann angepasst werden:
