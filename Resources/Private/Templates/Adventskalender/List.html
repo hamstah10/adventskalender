@@ -5,16 +5,16 @@
 <f:section name="Content">
     <style>
         :root {
-            --door-unlocked-start: {settings.doorUnlockedColorStart};
-            --door-unlocked-end: {settings.doorUnlockedColorEnd};
-            --door-locked-start: {settings.doorLockedColorStart};
-            --door-locked-end: {settings.doorLockedColorEnd};
-            --door-christmas-start: {settings.specialChristmasColorStart};
-            --door-christmas-end: {settings.specialChristmasColorEnd};
-            --door-nikolaus-start: {settings.specialNikolausColorStart};
-            --door-nikolaus-end: {settings.specialNikolausColorEnd};
-            --lightbox-accent: {settings.lightboxAccentColor};
-            --lightbox-bg: {settings.lightboxBackgroundColor};
+            --door-unlocked-start: <f:format.raw>{settings.doorUnlockedColorStart}</f:format.raw>;
+            --door-unlocked-end: <f:format.raw>{settings.doorUnlockedColorEnd}</f:format.raw>;
+            --door-locked-start: <f:format.raw>{settings.doorLockedColorStart}</f:format.raw>;
+            --door-locked-end: <f:format.raw>{settings.doorLockedColorEnd}</f:format.raw>;
+            --door-christmas-start: <f:format.raw>{settings.specialChristmasColorStart}</f:format.raw>;
+            --door-christmas-end: <f:format.raw>{settings.specialChristmasColorEnd}</f:format.raw>;
+            --door-nikolaus-start: <f:format.raw>{settings.specialNikolausColorStart}</f:format.raw>;
+            --door-nikolaus-end: <f:format.raw>{settings.specialNikolausColorEnd}</f:format.raw>;
+            --lightbox-accent: <f:format.raw>{settings.lightboxAccentColor}</f:format.raw>;
+            --lightbox-bg: <f:format.raw>{settings.lightboxBackgroundColor}</f:format.raw>;
         }
         <f:if condition="{settings.snowEnabled} == 0">
         .snowflake {
