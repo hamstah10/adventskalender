@@ -73,3 +73,9 @@ settingsDefinitions:
     default: true
     label: '❄️ Schnee-Animation aktivieren'
     description: 'Aktiviert oder deaktiviert die Schneeflocken-Animation'
+  
+  adventskalender.lightboxAccentColor:
+    type: color
+    default: '#c31432'
+    label: '💎 Lightbox Akzentfarbe'
+    description: 'Farbe für Lightbox-Badges, Buttons und Gutschein-Design'

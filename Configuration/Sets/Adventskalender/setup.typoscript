@@ -12,6 +12,7 @@ plugin.tx_adventskalender {
         specialNikolausColorStart = #ff0000
         specialNikolausColorEnd = #8b0000
         snowEnabled = 1
+        lightboxAccentColor = #c31432
     }
 }
 
@@ -30,5 +31,6 @@ plugin.tx_adventskalender {
         specialNikolausColorStart = {site:settings.adventskalender.specialNikolausColorStart}
         specialNikolausColorEnd = {site:settings.adventskalender.specialNikolausColorEnd}
         snowEnabled = {site:settings.adventskalender.snowEnabled}
+        lightboxAccentColor = {site:settings.adventskalender.lightboxAccentColor}
     }
 [END]
