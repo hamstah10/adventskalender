@@ -79,3 +79,9 @@ settingsDefinitions:
     default: '#c31432'
     label: '💎 Lightbox Akzentfarbe'
     description: 'Farbe für Lightbox-Badges, Buttons und Gutschein-Design'
+  
+  adventskalender.lightboxBackgroundColor:
+    type: color
+    default: '#1a1a1a'
+    label: '🎬 Lightbox Hintergrundfarbe'
+    description: 'Hintergrundfarbe des Lightbox-Dialogs'

@@ -1,2 +1,24 @@
 # Adventskalender Settings Definitions
 # Diese Datei definiert die TypoScript Konstanten für die Site Set Settings
+
+# Door Colors
+temp.adventskalender.doorUnlockedColorStart = #0f7c3c
+temp.adventskalender.doorUnlockedColorEnd = #2d5016
+temp.adventskalender.doorLockedColorStart = #c31432
+temp.adventskalender.doorLockedColorEnd = #d32f2f
+
+# Special Day Colors
+temp.adventskalender.specialChristmasColorStart = #ffd700
+temp.adventskalender.specialChristmasColorEnd = #ff8c00
+temp.adventskalender.specialNikolausColorStart = #ff0000
+temp.adventskalender.specialNikolausColorEnd = #8b0000
+
+# Lightbox Colors
+temp.adventskalender.lightboxAccentColor = #c31432
+temp.adventskalender.lightboxBackgroundColor = #1a1a1a
+
+# Other Settings
+temp.adventskalender.voucherHeadline = Geschenkgutschein
+temp.adventskalender.musicEnabled = 1
+temp.adventskalender.musicPath = /_assets/650af2e25ff4c4dcc48a2c838cf21ed4/Music/song_christmas.mp3
+temp.adventskalender.snowEnabled = 1

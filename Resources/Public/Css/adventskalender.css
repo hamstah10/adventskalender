@@ -356,7 +356,7 @@
 
 .lightbox-content {
     position: relative;
-    background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+    background: linear-gradient(135deg, var(--lightbox-bg, #1a1a1a) 0%, rgba(0, 0, 0, 0.7) 100%);
     border-radius: 20px;
     max-width: 900px;
     width: 90%;
