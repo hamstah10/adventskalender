@@ -9,7 +9,7 @@ ExtensionUtility::registerPlugin(
     'Adventskalender',
     'Calendar',
     'LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:plugin.calendar.title',
-    'EXT:adventskalender/Resources/Public/Icons/Extension.svg'
+    'adventskalender-plugin-calendar'
 );
 
 $pluginSignature = 'adventskalender_calendar';
@@ -25,7 +25,7 @@ ExtensionUtility::registerPlugin(
     'Adventskalender',
     'Management',
     'LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:plugin.management.title',
-    'EXT:adventskalender/Resources/Public/Icons/Extension.svg'
+    'adventskalender-plugin-management'
 );
 
 $managementPluginSignature = 'adventskalender_management';
