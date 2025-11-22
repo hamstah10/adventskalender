@@ -350,13 +350,15 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(0, 0, 0, 0.65);
     backdrop-filter: blur(5px);
 }
 
 .lightbox-content {
     position: relative;
-    background: linear-gradient(135deg, var(--lightbox-bg, #1a1a1a) 0%, rgba(0, 0, 0, 0.7) 100%);
+    background-color: #7a0404;
+
+    /*background: linear-gradient(135deg, var(--lightbox-bg, #7a0404) 0%, rgba(145, 15, 15, 0.7) 100%); */
     border-radius: 20px;
     max-width: 900px;
     width: 90%;
