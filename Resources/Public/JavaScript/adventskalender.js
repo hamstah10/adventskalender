@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Nur Schnee anzeigen, wenn der Adventskalender auf der Seite ist
-    const adventskalender = document.querySelector('.tx-adventskalender');
-    if (!adventskalender) {
+    //const adventskalender = document.querySelector('.tx-adventskalender');
+   /* if (!adventskalender) {
         return;
-    }
+    }*/
     
     const modals = document.querySelectorAll('.modal');
     
