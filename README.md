@@ -21,6 +21,13 @@ Eine vollständige TYPO3 v13 Extension für einen interaktiven Adventskalender m
 - 🖥️ Status-Kontrolle (Aktiv/Inaktiv)
 - 🖥️ Responsive Design für Mobile & Desktop
 
+### Dashboard Widget
+- 📊 Türchen-Übersicht im TYPO3 Dashboard
+- 📊 Anzeige der Anzahl angelegter Türchen
+- 📊 Status der aktiven/inaktiven Türchen
+- 📊 Sortierung nach Türchen-Nummer
+- 📊 Scrollbare Liste für alle 24 Türchen
+
 ### Gutschein-System
 - 🎁 Digitale Gutscheine für jedes Türchen
 - 🎁 Anpassbare Gutschein-Vorlage
@@ -102,7 +109,24 @@ php vendor/bin/typo3 cache:flush
    - 🗑️ Löschen-Button mit Bestätigung
    - 📊 Status (Aktiv/Inaktiv) anzeigen
 
-### 4. Gutschein erstellen (optional)
+### 4. Dashboard Widget aktivieren (optional)
+
+Das Adventskalender Extension bietet ein Dashboard Widget für einen schnellen Überblick:
+
+1. Im TYPO3 Backend → **Dashboard**
+2. **"Widget zu 'Christmas' hinzufügen"** oder ähnlich klicken
+3. In der Widget-Liste **"Adventskalender - Türen"** suchen
+4. Widget mit Klick hinzufügen
+
+Das Widget zeigt:
+- 📊 Gesamtzahl der angelegten Türchen
+- ✅ Anzahl der aktivierten Türchen
+- 📋 Vollständige Liste aller Türchen mit Status
+- 🔢 Sortiert nach Tag (1-24)
+
+Das Widget aktualisiert sich automatisch, wenn neue Türchen angelegt oder Status geändert werden.
+
+### 5. Gutschein erstellen (optional)
 Im Türchen-Datensatz:
 1. Tab **"Gutschein"**
 2. **"Create new"** klicken
@@ -230,6 +254,8 @@ adventskalender/
 │   ├── Controller/
 │   │   ├── AdventskalenderController.php (Anzeige)
 │   │   └── ManagementController.php (Frontend-Verwaltung)
+│   ├── Dashboard/
+│   │   └── DoorWidget.php (Dashboard Widget)
 │   ├── Domain/
 │   │   ├── Model/
 │   │   │   ├── Door.php
@@ -258,7 +284,8 @@ adventskalender/
 │   │   │   ├── locallang.xlf
 │   │   │   ├── de.locallang.xlf
 │   │   │   ├── ru.locallang.xlf
-│   │   │   └── locallang_db.xlf
+│   │   │   ├── locallang_db.xlf
+│   │   │   └── locallang_dashboard.xlf
 │   │   ├── Layouts/
 │   │   │   └── Default.html
 │   │   ├── Partials/
@@ -275,7 +302,8 @@ adventskalender/
 │       │   ├── santa-sleigh.html
 │       │   └── santa-sleigh.css
 │       ├── Css/
-│       │   └── adventskalender.css
+│       │   ├── adventskalender.css
+│       │   └── dashboard.css
 │       ├── Icons/
 │       │   ├── Extension.svg
 │       │   ├── door.svg
@@ -313,6 +341,27 @@ Vor dem Upload ins TER bitte prüfen:
 - [ ] PHP-Code entspricht TYPO3 Coding Guidelines
 - [ ] Keine Sicherheitslücken
 - [ ] Keine absoluten Pfade im Code
+
+## Dashboard Widget
+
+Das Dashboard Widget bietet eine schnelle Übersicht über alle angelegten Adventskalender-Türchen:
+
+### Features des Widgets
+
+- **Statistik**: Zeigt die Gesamtanzahl und Anzahl der aktiven Türchen
+- **Türchen-Liste**: Alle 24 Türchen sortiert nach Nummer
+- **Status-Anzeige**: Grünes Häkchen für aktive, rotes X für inaktive Türchen
+- **Scrollbar**: Für die übersichtliche Anzeige aller Türchen
+- **Echtzeit-Updates**: Widget aktualisiert sich automatisch
+
+### Dashboard Widget in einer Site hinzufügen
+
+1. Im TYPO3 Backend zum **Dashboard** navigieren
+2. Auf **"Widget zu '...' hinzufügen"** klicken
+3. In der Liste **"Adventskalender - Türen"** auswählen
+4. Mit Klick hinzufügen
+
+Das Widget ist sofort verfügbar und zeigt alle in der Datenbank angelegten Türchen.
 
 ## Frontend-Management Plugin
 
