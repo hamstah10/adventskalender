@@ -13,4 +13,8 @@ return [
         'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
         'source' => 'EXT:adventskalender/Resources/Public/Icons/Extension.svg',
     ],
+    'module-adventskalender' => [
+        'provider' => \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+        'source' => 'EXT:adventskalender/Resources/Public/Icons/Extension.svg',
+    ],
 ];

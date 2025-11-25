@@ -33,3 +33,7 @@ ExtensionUtility::configurePlugin(
 
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][] = 
     \Hamstah\Adventskalender\Hooks\PageRendererHook::class . '->addAssets';
+
+// Dashboard Widget CSS
+$GLOBALS['TYPO3_CONF_VARS']['BE']['stylesheets']['adventskalender_dashboard'] = 
+    'EXT:adventskalender/Resources/Public/Css/dashboard.css';

@@ -2,11 +2,15 @@ services:
   _defaults:
     autowire: true
     autoconfigure: true
-    public: false
 
-  Hamstah\Adventskalender\:
-    resource: '../Classes/*'
-
-  Hamstah\Adventskalender\Controller\:
-    resource: '../Classes/Controller'
-    tags: ['controller.argument_value_mapper']
+  Hamstah\Adventskalender\Dashboard\DoorWidget:
+    public: true
+    tags:
+      - name: dashboard.widget
+        identifier: 'adventskalender_door_widget'
+        title: 'LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:dashboard.widget.door.title'
+        description: 'LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:dashboard.widget.door.description'
+        iconIdentifier: 'module-adventskalender'
+        groupNames: 'adventskalender,general'
+        height: 'medium'
+        width: 'medium'

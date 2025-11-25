@@ -108,6 +108,12 @@
       <trans-unit id="plugin.management.flexform.allowDelete">
         <source>Löschen erlauben</source>
       </trans-unit>
+      <trans-unit id="dashboard.widget.door.title">
+        <source>Adventskalender - Türen</source>
+      </trans-unit>
+      <trans-unit id="dashboard.widget.door.description">
+        <source>Zeigt eine Übersicht der angelegten Adventskalender-Türen</source>
+      </trans-unit>
       </body>
       </file>
       </xliff>
