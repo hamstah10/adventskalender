@@ -85,9 +85,9 @@ class Door extends AbstractEntity
         return (bool)$this->isActive;
     }
 
-    public function setIsActive(int $isActive): void
+    public function setIsActive(?int $isActive = 0): void
     {
-        $this->isActive = $isActive;
+        $this->isActive = $isActive ?? 0;
     }
 
     public function getVideo(): ?FileReference

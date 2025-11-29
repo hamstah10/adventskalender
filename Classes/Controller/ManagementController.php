@@ -38,7 +38,6 @@ class ManagementController extends ActionController
         }
     }
 
-
     public function indexAction(): ResponseInterface
     {
         $doors = $this->doorRepository->findAll();
@@ -115,9 +114,16 @@ class ManagementController extends ActionController
             return $this->redirect('vouchers');
         }
 
-        $doors = $this->doorRepository->findAll();
+        $allDoors = $this->doorRepository->findAll();
+        // Filtere Doors: ohne Gutschein ODER mit dem aktuellen Gutschein des Vouchers
+        $doorsForSelection = [];
+        foreach ($allDoors as $door) {
+            if ($door->getVoucher() === null || ($door->getVoucher() && $door->getVoucher()->getUid() === $voucher->getUid())) {
+                $doorsForSelection[] = $door;
+            }
+        }
         $this->view->assign('voucher', $voucher);
-        $this->view->assign('doors', $doors);
+        $this->view->assign('doors', $doorsForSelection);
         return $this->htmlResponse();
     }
 
@@ -137,9 +143,16 @@ class ManagementController extends ActionController
     public function newVoucherAction(): ResponseInterface
     {
         $voucher = new Voucher();
-        $doors = $this->doorRepository->findAll();
+        $allDoors = $this->doorRepository->findAll();
+        // Filtere nur Doors ohne Gutschein
+        $doorsWithoutVoucher = [];
+        foreach ($allDoors as $door) {
+            if ($door->getVoucher() === null) {
+                $doorsWithoutVoucher[] = $door;
+            }
+        }
         $this->view->assign('voucher', $voucher);
-        $this->view->assign('doors', $doors);
+        $this->view->assign('doors', $doorsWithoutVoucher);
         return $this->htmlResponse();
     }
 

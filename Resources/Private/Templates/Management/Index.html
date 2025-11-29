@@ -202,14 +202,45 @@
             color: #155724;
             border: 1px solid #c3e6cb;
         }
+
+        .btn-primary:disabled,
+        .btn-primary.disabled {
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .info-box {
+            background-color: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            color: #0c5aa0;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
     <div class="management-container">
         <div class="header">
             <h1>🎄 Adventskalender verwalten</h1>
-            <f:link.action action="new" class="btn btn-primary">+ Neues Türchen</f:link.action>
+            <f:if condition="{doors -> f:count()} < 24">
+                <f:then>
+                    <f:link.action action="new" class="btn btn-primary">+ Neues Türchen</f:link.action>
+                </f:then>
+                <f:else>
+                    <button class="btn btn-primary" disabled title="Maximum von 24 Türchen erreicht">+ Neues Türchen</button>
+                </f:else>
+            </f:if>
         </div>
+
+        <f:if condition="{doors -> f:count()} == 24">
+            <div class="info-box">
+                ✓ Alle 24 Türchen sind angelegt. Der Adventskalender ist vollständig!
+            </div>
+        </f:if>
 
         <div class="tabs">
             <span class="tab-link active">Türchen</span>
@@ -257,8 +288,8 @@
                                         </f:if>
                                     </td>
                                     <td>
-                                        <div class="door-status {f:if(condition: '{door.getIsActive}', then: 'status-active', else: 'status-inactive')}">
-                                            <f:if condition="{door.getIsActive}">
+                                        <div class="door-status {f:if(condition: '{door.isActive}', then: 'status-active', else: 'status-inactive')}">
+                                            <f:if condition="{door.isActive}">
                                                 <f:then>✓ Aktiv</f:then>
                                                 <f:else>✗ Inaktiv</f:else>
                                             </f:if>
