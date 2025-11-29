@@ -1,4 +1,4 @@
-# TYPO3 Adventskalender Extension
+# TYPO3 Adventskalender Extension - Dokumentation
 
 Vollständige Dokumentation siehe README.md
 
@@ -8,14 +8,114 @@ Vollständige Dokumentation siehe README.md
 2. Site Set "🎄 Adventskalender" zur Site hinzufügen
 3. Einstellungen in Site → Settings anpassen
 4. Plugin auf einer Seite einfügen
-5. Türchen im Backend anlegen (List-Modul)
+5. Türchen im Backend oder Frontend anlegen
+
+## Neue Features in v2.0
+
+### Gutschein-System erweitert
+- ✅ Frontend-Management für Gutscheine
+- ✅ Echtzeit-Vorschau beim Erstellen
+- ✅ Mehrere Design-Templates (Klassisch, Santa, Modern)
+- ✅ Direkter Türchen-Zuordnung im Formular
+- ✅ Gutschein-Übersicht in der Türchen-Management-Ansicht
+
+### Verbesserte Verwaltung
+- ✅ Door ↔ Voucher bidirektionale Relation
+- ✅ Gutscheine-Tab im Management-Plugin
+- ✅ Filterung gelöschter Datensätze in Repositories
+- ✅ Improved Property Mapping für alle Fields
 
 ## Wichtig
 
 - TYPO3 v13.4+ erforderlich
 - PHP 8.2+ erforderlich
 - Site Set muss aktiviert sein für korrekte Funktion
+- Cache leeren nach Update: php vendor/bin/typo3 cache:flush
+
+## Datenbankaktualisierung nach Update
+
+Wenn von v1.x zu v2.0 aktualisiert wird:
+
+1. Datenbank aktualisieren:
+   - Im Backend: Maintenance → Analyze Database Structure
+   - Neue Spalte "door" in tx_adventskalender_domain_model_voucher wird erstellt
+
+2. Cache leeren:
+   php vendor/bin/typo3 cache:flush
+
+3. Day-Werte für existierende Türchen aktualisieren (falls nötig):
+   UPDATE tx_adventskalender_domain_model_door SET day = 1 WHERE day = 0;
+
+## Frontend-Verwaltungs-Plugin
+
+Das Extension bietet jetzt ein Frontend-Management-Plugin mit:
+
+### Türchen-Verwaltung
+- Übersicht aller Türchen in einer Tabelle
+- Tag-Nummer und Status-Anzeige
+- Gutschein-Vorschau pro Türchen
+- Bearbeiten/Löschen Funktionalität
+
+### Gutschein-Verwaltung
+- Separate "Gutscheine"-Tab
+- Neue Gutscheine erstellen
+- Zu einem Türchen zuordnen
+- Echtzeit-Vorschau während der Erstellung
+- Design-Optionen wählen
+
+### Setup des Management-Plugins
+
+1. Neue Seite erstellen (z.B. "/admin/adventskalender")
+2. Plugin-Element "Adventskalender - Verwaltung" einfügen
+3. Optional: Seite mit Benutzer-Authentifizierung schützen
+
+## Gutschein-Designs
+
+### Klassisch (Classic)
+- Gold-Farbverlauf (#ffd700 → #ffed4e)
+- Schneeflocken-Dekoration
+- Ideal für traditionelles Design
+
+### Santa (Santa)
+- Rot-Farbverlauf (#c41e3a → #8b0000)
+- Weiße Schrift
+- Weihnachtliches Feeling
+
+### Modern (Modern)
+- Blau-Farbverlauf
+- Modernes, schlankes Design
+- Professioneller Look
 
 ## Support
 
-hamstahstudio@gmail.com
+- **E-Mail**: hamstahstudio@gmail.com
+- **Website**: https://www.hamstahstudio.de
+- **Dokumentation**: README.md und MANAGEMENT_PLUGIN.md
+
+## Wichtige Datei-Lokationen
+
+- **Konfiguration**: config/sites/[sitename]/settings.yaml
+- **Templates**: packages/adventskalender/Resources/Private/Templates/
+- **Language Files**: packages/adventskalender/Resources/Private/Language/
+- **CSS**: packages/adventskalender/Resources/Public/Css/
+- **TCA**: packages/adventskalender/Configuration/TCA/
+
+## Troubleshooting
+
+### Gutscheine werden nicht angezeigt
+- Cache leeren: php vendor/bin/typo3 cache:flush
+- Prüfen, ob Gutschein zu einer Door zugeordnet ist
+- Prüfen, ob die Door aktiv ist (is_active = 1)
+
+### Day-Feld zeigt 0
+- SQL ausführen: UPDATE tx_adventskalender_domain_model_door SET day = 1 WHERE day = 0;
+- Cache leeren nach Update
+
+### Relation Door ↔ Voucher funktioniert nicht
+- Datenbank-Struktur analysieren lassen im Backend
+- Neue "door"-Spalte muss in tx_adventskalender_domain_model_voucher existieren
+- Falls nicht vorhanden: Analyze Database Structure im Maintenance-Modul
+
+## Lizenz
+
+GPL-2.0-or-later

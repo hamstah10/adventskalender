@@ -1,53 +1,84 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+Alle großen Änderungen an diesem Projekt werden in dieser Datei dokumentiert.
 
-## [1.1.0] - 2025-11-19
+## [2.0.0] - 2025-12-29
 
-### Added
-- Dynamic color configuration via Site Settings
-- CSS variable implementation for theme colors
-- Lightbox color customization
-- Voucher design customization
-- Complete documentation for color settings
-- Color configuration examples in README
+### ✨ New Features
 
-### Changed
-- Locked door colors now use CSS variables from Site Settings
-- Lightbox badges, buttons and vouchers now use configurable colors
-- Music toggle button respects theme colors
-- All hardcoded colors replaced with CSS variables
+#### Gutschein-System erweitert
+- **Frontend-Gutschein-Verwaltung**: Gutscheine können jetzt komplett im Frontend angelegt und bearbeitet werden
+- **Echtzeit-Vorschau**: Live-Vorschau wie der Gutschein auf der Website aussieht während der Erstellung
+- **Mehrere Design-Templates**: Klassisch (Gold), Santa (Rot), Modern (Blau)
+- **Direkter Türchen-Zuordnung**: Gutscheine werden direkt beim Erstellen einer Türchen zugeordnet
+- **Gutschein-Übersicht**: Neue Spalte in der Türchen-Management-Ansicht zeigt zugehörige Gutscheine
 
-### Technical
-- Added `--lightbox-accent` CSS variable
-- Updated `adventskalender.css` to use CSS variables throughout
-- Site settings now properly control Lightbox appearance
-- Colors cascade through all UI components
+#### Datenbankstruktur
+- **Bidirektionale Door ↔ Voucher Relation**: 
+  - Neue `door` Spalte in `tx_adventskalender_domain_model_voucher`
+  - `foreign_field` Konfiguration in TCA für inline Relation
+  - Voucher Model erhält `getDoor()` und `setDoor()` Methoden
 
-## [1.0.0] - 2025-11-16
+#### Repository Verbesserungen
+- **VoucherRepository**: Neue Klasse mit Soft-Delete Handling
+- **DoorRepository**: Erweitert mit Soft-Delete Handling
+- **Filtered Queries**: Gelöschte Datensätze werden automatisch gefiltert
 
-### Added
-- Initial release
-- 24 configurable advent calendar doors
-- Multimedia support (images, videos, audio)
-- Digital voucher system with download function
-- Lightbox view for door content
-- Site Set integration for TYPO3 v13
-- Customizable colors via Site Settings
-- Optional background music with toggle
-- Snow animation
-- Decorative images (horse, reindeer) with animations
-- Multi-language support (DE, EN, RU)
-- Responsive design
-- Individual icons for each day
-- Sound effect for locked doors
-- Translation support for door records and vouchers
+#### Frontend Management Plugin
+- **Gutscheine Tab**: Separate Tab-Navigation für Gutschein-Verwaltung
+- **Gutschein-Liste**: Übersicht aller Gutscheine mit Tag, Design und Kontaktdaten
+- **Gutschein-Formular**: Integriertes Formular mit Door-Selector und Live-Vorschau
+- **Erweiterte Tabelle**: Türchen-Übersicht zeigt nun zugehörige Gutscheine
 
-### Features
-- Grid layout with random door order
-- Special styling for day 6 (Nikolaus) and day 24 (Christmas)
-- Animated entrance effects for all elements
-- Sticky voucher display in lightbox
-- HTML2Canvas integration for voucher downloads
-- Bootstrap Icons integration
-- Animate.css integration
+### 🔧 Bug Fixes
+
+- ✅ Gelöschte Gutscheine werden im Frontend nicht mehr angezeigt
+- ✅ Day-Feld wird nicht mehr mit 0 initialisiert
+- ✅ Property Mapping funktioniert korrekt für alle Voucher-Felder
+- ✅ Soft-Delete Records werden in Queries gefiltert
+
+### 🛠️ Breaking Changes
+
+- **Voucher.day entfernt**: Das `day` Feld wurde aus der Voucher-Klasse entfernt (verwendet jetzt die Door-Relation)
+- **TCA Änderungen**: `day` Feld wurde aus Voucher TCA entfernt
+- **Datenbankschema**: `day` Spalte existiert nicht mehr in tx_adventskalender_domain_model_voucher
+
+### 📦 Database Migration
+
+Neue Spalte wird automatisch erstellt:
+```sql
+ALTER TABLE tx_adventskalender_domain_model_voucher ADD door INT(11) UNSIGNED DEFAULT '0' NOT NULL;
+```
+
+### 📝 Documentation
+
+- README.md erweitert mit neuem Gutschein-System
+- Documentation.txt hinzugefügt mit Schnellstart und Troubleshooting
+- CHANGELOG.md erstellt (diese Datei)
+
+### 🔄 Migration von v1.x zu v2.0
+
+1. Extension aktualisieren
+2. Cache leeren: `php vendor/bin/typo3 cache:flush`
+3. Datenbank-Struktur analysieren lassen im Backend (Maintenance → Analyze Database Structure)
+4. Falls alte Gutscheine mit day-Feld vorhanden: Die neue Relation nutzen
+
+### 💡 Bekannte Einschränkungen
+
+- Gutschein-Designs sind aktuell auf 2 Varianten (Classic, Santa) beschränkt
+- Download-Funktion benötigt html2canvas Library
+- Echtzeit-Vorschau funktioniert nur mit JavaScript aktiviert
+
+---
+
+## [1.0.0] - 2024-12-01
+
+### ✨ Initial Release
+
+- Türchen-Verwaltung (1-24)
+- Grundlegendes Gutschein-System
+- Dashboard Widget
+- Frontend Management Plugin (Basis)
+- Multi-Language Support (DE, EN, RU)
+- Konfigurierbare Farben via Site Sets
+- Animation und Sound-Effekte

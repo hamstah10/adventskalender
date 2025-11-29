@@ -135,5 +135,10 @@ return [
                 'default' => 'classic',
             ],
         ],
+        'door' => [
+            'config' => [
+                'type' => 'passthrough',
+            ],
+        ],
     ],
 ];

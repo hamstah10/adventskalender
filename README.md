@@ -30,9 +30,12 @@ Eine vollständige TYPO3 v13 Extension für einen interaktiven Adventskalender m
 
 ### Gutschein-System
 - 🎁 Digitale Gutscheine für jedes Türchen
-- 🎁 Anpassbare Gutschein-Vorlage
+- 🎁 Anpassbare Gutschein-Vorlagen (Klassisch, Santa, Modern)
 - 🎁 Download-Funktion als PNG
 - 🎁 Personalisierbar (Für wen, Von wem, Beschreibung)
+- 🎁 Echtzeit-Vorschau bei der Erstellung
+- 🎁 Verwaltung über Frontend-Plugin mit Türchen-Zuordnung
+- 🎁 Übersicht in der Türchen-Management-Ansicht
 
 ### Design & Animation
 - 🎨 Frei konfigurierbare Farben über Site Sets
@@ -126,7 +129,9 @@ Das Widget zeigt:
 
 Das Widget aktualisiert sich automatisch, wenn neue Türchen angelegt oder Status geändert werden.
 
-### 5. Gutschein erstellen (optional)
+### 5. Gutschein verwalten (optional)
+
+#### Im Backend (klassisch)
 Im Türchen-Datensatz:
 1. Tab **"Gutschein"**
 2. **"Create new"** klicken
@@ -134,6 +139,21 @@ Im Türchen-Datensatz:
    - **Für (Name)**: Empfänger
    - **Beschreibung**: Wofür der Gutschein ist
    - **Von (Name)**: Absender
+   - **Design**: Wähle zwischen Klassisch (Gold), Santa (Rot) oder Modern (Blau)
+
+#### Im Frontend (neu!)
+1. Seite mit **"Adventskalender - Verwaltung"** Plugin öffnen
+2. Tab **"Gutscheine"** klicken
+3. **"+ Neuer Gutschein"** klicken
+4. Felder ausfüllen:
+   - **Türchen (Tag)**: Zu welchem Tag gehört der Gutschein
+   - **Titel**: Gutschein-Überschrift
+   - **Für**: Empfänger-Name
+   - **Beschreibung**: Inhalt des Gutscheins
+   - **Von**: Absender-Name
+   - **Design**: Gestaltung wählen
+5. **"Gutschein erstellen"** oder **"Änderungen speichern"** klicken
+6. Gutschein-Vorschau wird in Echtzeit angezeigt
 
 ## Site Set Einstellungen
 
@@ -229,6 +249,31 @@ Die Extension unterstützt vollständige Übersetzungen:
 - Türchen-Datensätze (Titel, Beschreibung, Inhalt)
 - Gutscheine (Namen, Beschreibung)
 
+## Datenbankstruktur
+
+### Türchen (tx_adventskalender_domain_model_door)
+- `uid` - Eindeutige ID
+- `day` - Tag (1-24, erforderlich)
+- `title` - Titel des Türchens
+- `description` - Kurzbeschreibung
+- `content` - Hauptinhalt (RTE)
+- `image` - Bild-Dateireferenz
+- `video` - Video-Dateireferenz
+- `audio` - Audio-Dateireferenz
+- `link` - Externe URL
+- `is_active` - Status aktiv/inaktiv
+- `voucher` - Verweis auf zugehörigen Gutschein
+- `custom_style`, `custom_color_start`, `custom_color_end` - Benutzerdefinierte Farben
+
+### Gutscheine (tx_adventskalender_domain_model_voucher)
+- `uid` - Eindeutige ID
+- `headline` - Titel des Gutscheins
+- `for_name` - Für (Empfänger)
+- `from_name` - Von (Absender)
+- `description` - Beschreibung/Inhalt
+- `design` - Design-Template (classic, santa)
+- `door` - Verweis auf zugehöriges Türchen (inverse Relation)
+
 ## Technische Details
 
 - **TYPO3-Version**: 13.4+
@@ -239,6 +284,7 @@ Die Extension unterstützt vollständige Übersetzungen:
   - typo3/cms-core
   - typo3/cms-extbase
   - typo3/cms-fluid
+- **Relationen**: Door ↔ Voucher (1:1 Beziehung, bidirektional)
 
 ## Externe Bibliotheken
 
@@ -373,6 +419,10 @@ Das Plugin bietet:
 - **Schnelles Erstellen** - Neue Türchen mit wenigen Klicks hinzufügen
 - **Sichere Löschung** - Mit Bestätigungsdialog zum Schutz vor Unfällen
 - **Responsive Design** - Funktioniert auf Desktop, Tablet und Smartphone
+- **Gutschein-Verwaltung** - Gutscheine direkt im Frontend anlegen und bearbeiten
+- **Gutschein-Vorschau** - Echtzeit-Vorschau wie der Gutschein auf der Website aussieht
+- **Türchen-Zuordnung** - Gutscheine können direkt einem Türchen zugeordnet werden
+- **Gutschein-Designs** - Mehrere Design-Optionen zur Auswahl
 
 ### Einsatz des Management-Plugins
 

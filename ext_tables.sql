@@ -45,6 +45,7 @@ CREATE TABLE tx_adventskalender_domain_model_voucher (
     description text,
     from_name varchar(255) DEFAULT '' NOT NULL,
     design varchar(50) DEFAULT 'classic' NOT NULL,
+    door int(11) unsigned DEFAULT '0' NOT NULL,
 
     tstamp int(11) unsigned DEFAULT '0' NOT NULL,
     crdate int(11) unsigned DEFAULT '0' NOT NULL,

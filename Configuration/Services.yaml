@@ -2,6 +2,11 @@ services:
   _defaults:
     autowire: true
     autoconfigure: true
+    public: false
+
+  Hamstah\Adventskalender\:
+    resource: '../Classes/*'
+    public: true
 
   Hamstah\Adventskalender\Dashboard\DoorWidget:
     public: true

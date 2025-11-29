@@ -182,6 +182,7 @@ return [
             'config' => [
                 'type' => 'inline',
                 'foreign_table' => 'tx_adventskalender_domain_model_voucher',
+                'foreign_field' => 'door',
                 'maxitems' => 1,
                 'appearance' => [
                     'collapseAll' => true,

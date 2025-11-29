@@ -9,7 +9,7 @@ use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 
 class Door extends AbstractEntity
 {
-    protected int $day = 0;
+    protected int $day = 1;
     protected string $title = '';
     protected string $description = '';
     protected ?FileReference $image = null;

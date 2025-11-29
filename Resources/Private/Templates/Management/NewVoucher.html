@@ -1,0 +1,366 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<head>
+    <title>Neuen Gutschein erstellen</title>
+    <style>
+        .management-container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .required::after {
+            content: " *";
+            color: #dc3545;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-help {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+        }
+
+        .btn {
+            padding: 10px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        .preview-section {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .preview-section h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .voucher-preview {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            text-align: center;
+        }
+
+        .voucher-preview-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .voucher-preview-text {
+            font-size: 13px;
+            color: #666;
+            margin: 5px 0;
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="management-container">
+        <div class="header">
+            <h1>🎁 Neuen Gutschein erstellen</h1>
+        </div>
+
+        <f:form action="createVoucher" method="post" object="{voucher}" name="voucher">
+            <div class="form-group">
+                <label for="door" class="required">Türchen (Tag)</label>
+                <f:form.select property="door" id="door" prependOptionLabel="— Bitte wählen —" options="{doors}" optionLabelField="title" optionValueField="uid" required="required" />
+                <div class="form-help">Zu welchem Türchen/Tag soll dieser Gutschein gehören?</div>
+            </div>
+
+            <div class="form-group">
+                <label for="headline" class="required">Titel</label>
+                <f:form.textfield property="headline" id="headline" placeholder="z.B. Gutschein für Kaffee" required="required" />
+                <div class="form-help">Der Titel wird auf dem Gutschein angezeigt</div>
+            </div>
+
+            <div class="form-group">
+                <label for="forName">Für wen?</label>
+                <f:form.textfield property="forName" id="forName" placeholder="z.B. Anna" />
+                <div class="form-help">Name der Person, für die der Gutschein gedacht ist</div>
+            </div>
+
+            <div class="form-group">
+                <label for="fromName">Von wem?</label>
+                <f:form.textfield property="fromName" id="fromName" placeholder="z.B. Der Weihnachtsmann" />
+                <div class="form-help">Name des Absenders (optional)</div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Beschreibung</label>
+                <f:form.textarea property="description" id="description" placeholder="Beschreibe den Inhalt oder den Wert des Gutscheins..." />
+                <div class="form-help">z.B. Gutschein für einen Kaffee im Wert von 5€</div>
+            </div>
+
+            <div class="form-group">
+                <label for="design" class="required">Design</label>
+                <f:form.select property="design" id="design" options="{classic: 'Klassisch (Gold)', modern: 'Modern (Rot)', elegant: 'Elegant (Blau)'}" required="required" />
+                <div class="form-help">Wähle ein Designschema für den Gutschein</div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Gutschein erstellen</button>
+                <f:link.action action="vouchers" class="btn btn-secondary">Abbrechen</f:link.action>
+            </div>
+        </f:form>
+
+        <div class="preview-section">
+            <h3>Vorschau</h3>
+            <div id="previewVoucher">
+                <!-- Classic Design -->
+                <div class="voucher voucher-classic" id="voucherElement">
+                    <div class="voucher-border">
+                        <div class="voucher-snowflakes">❄️ ❄️ ❄️ ❄️ ❄️</div>
+                        <div class="voucher-header">
+                            <div class="voucher-icon">🎁</div>
+                            <h3 class="voucher-title" id="preview-headline">Gutschein Titel</h3>
+                        </div>
+                        <div class="voucher-body">
+                            <div class="voucher-for">
+                                <span class="voucher-label">Für:</span>
+                                <span class="voucher-name" id="preview-for">Name</span>
+                            </div>
+                            <div class="voucher-description" id="preview-description">
+                                Beschreibung erscheint hier
+                            </div>
+                            <div class="voucher-from">
+                                <span class="voucher-label">Von:</span>
+                                <span class="voucher-name" id="preview-from">Absender</span>
+                            </div>
+                        </div>
+                        <div class="voucher-footer">
+                            <div class="voucher-snowflakes">🎄 ⭐ 🎄 ⭐ 🎄</div>
+                        </div>
+                        <div class="voucher-date">01.12.2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            .voucher {
+                padding: 30px;
+                border-radius: 8px;
+                background: white;
+                text-align: center;
+                margin: 0 auto;
+                max-width: 400px;
+            }
+
+            .voucher-classic {
+                background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+                border: 3px solid #cc9900;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            .voucher-santa {
+                background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+                color: white;
+                border: 3px solid #7a0d1a;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            }
+
+            .voucher-border {
+                border: 2px dashed #999;
+                padding: 20px;
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.9);
+                color: #333;
+            }
+
+            .voucher-classic .voucher-border {
+                background: rgba(255, 255, 255, 0.95);
+            }
+
+            .voucher-santa .voucher-border {
+                background: transparent;
+                color: white;
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+
+            .voucher-snowflakes {
+                font-size: 20px;
+                margin: 10px 0;
+                letter-spacing: 10px;
+            }
+
+            .voucher-header {
+                margin-bottom: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .voucher-icon {
+                font-size: 30px;
+            }
+
+            .voucher-title {
+                margin: 0;
+                font-size: 24px;
+                font-weight: bold;
+            }
+
+            .voucher-body {
+                margin: 20px 0;
+            }
+
+            .voucher-for, .voucher-from {
+                margin: 15px 0;
+                font-size: 16px;
+            }
+
+            .voucher-label {
+                font-weight: bold;
+                display: block;
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+
+            .voucher-name {
+                display: block;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            .voucher-description {
+                margin: 20px 0;
+                font-style: italic;
+                font-size: 14px;
+                line-height: 1.5;
+                min-height: 40px;
+            }
+
+            .voucher-footer {
+                margin: 15px 0;
+                padding-top: 15px;
+                border-top: 1px solid #ccc;
+            }
+
+            .voucher-santa .voucher-footer {
+                border-top-color: rgba(255, 255, 255, 0.3);
+            }
+
+            .voucher-date {
+                font-size: 12px;
+                margin-top: 10px;
+                font-weight: bold;
+            }
+        </style>
+    </div>
+
+    <script>
+        document.getElementById('headline').addEventListener('input', function() {
+            document.getElementById('preview-headline').textContent = this.value || 'Gutschein Titel';
+        });
+
+        document.getElementById('description').addEventListener('input', function() {
+            document.getElementById('preview-description').textContent = this.value || 'Beschreibung erscheint hier';
+        });
+
+        document.getElementById('forName').addEventListener('input', function() {
+            document.getElementById('preview-for').textContent = this.value || 'Name';
+        });
+
+        document.getElementById('fromName').addEventListener('input', function() {
+            document.getElementById('preview-from').textContent = this.value || 'Absender';
+        });
+    </script>
+</body>
+</html>

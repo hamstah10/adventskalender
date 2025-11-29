@@ -6,12 +6,24 @@ Das Management Plugin ist ein Frontend-Plugin, das es Benutzern ermöglicht, Adv
 
 ## Features
 
+### Türchen-Verwaltung
 - **Übersicht**: Zeige alle Adventskalender-Türchen in einer übersichtlichen Gitter-Ansicht
 - **Bearbeiten**: Existierende Türchen aktualisieren (Titel, Beschreibung, Inhalt, Link, Status)
 - **Erstellen**: Neue Türchen direkt im Frontend hinzufügen
 - **Löschen**: Unwanted Türchen entfernen (mit Bestätigungsdialog)
+
+### Gutschein-Verwaltung
+- **Gutschein-Übersicht**: Übersichtliche Tabelle aller Gutscheine
+- **Gutschein erstellen**: Neue Gutscheine mit Titel, Beschreibung, Empfänger und Absender
+- **Gutschein bearbeiten**: Alle Details nachträglich anpassen
+- **Design-Optionen**: Klassisch, Modern oder Elegant
+- **Gutschein löschen**: Mit Bestätigungsdialog
+- **Live-Vorschau**: Echtzeit-Vorschau beim Erstellen/Bearbeiten
+
+### Allgemein
 - **Responsive Design**: Mobile-freundliche Benutzeroberfläche
 - **Flash Messages**: Erfolgs- und Fehlermeldungen für Benutzeraktion
+- **Tabbed Interface**: Einfacher Wechsel zwischen Türchen- und Gutschein-Verwaltung
 
 ## Installation
 
@@ -29,6 +41,7 @@ Das Management Plugin ist ein Frontend-Plugin, das es Benutzern ermöglicht, Adv
 
 ### Controller: ManagementController
 
+#### Türchen-Aktionen
 - `indexAction()` - Zeigt alle Türchen an
 - `editAction()` - Zeigt Bearbeitungsformular für ein Türchen
 - `updateAction()` - Speichert Änderungen
@@ -36,14 +49,29 @@ Das Management Plugin ist ein Frontend-Plugin, das es Benutzern ermöglicht, Adv
 - `createAction()` - Erstellt ein neues Türchen
 - `deleteAction()` - Löscht ein Türchen
 
+#### Gutschein-Aktionen
+- `vouchersAction()` - Zeigt alle Gutscheine an
+- `editVoucherAction()` - Zeigt Bearbeitungsformular für einen Gutschein
+- `updateVoucherAction()` - Speichert Gutschein-Änderungen
+- `newVoucherAction()` - Zeigt Formular für neuen Gutschein
+- `createVoucherAction()` - Erstellt einen neuen Gutschein
+- `deleteVoucherAction()` - Löscht einen Gutschein
+
 ### Templates
 
-- `Index.html` - Übersichtsseite mit Türchen-Gitter
-- `Edit.html` - Bearbeitungsformular
-- `New.html` - Erstellungsformular
+#### Türchen-Templates
+- `Index.html` - Übersichtsseite mit Türchen-Tabelle
+- `Edit.html` - Bearbeitungsformular für Türchen
+- `New.html` - Erstellungsformular für Türchen
+
+#### Gutschein-Templates
+- `Vouchers.html` - Übersichtsseite mit Gutschein-Tabelle
+- `EditVoucher.html` - Bearbeitungsformular für Gutscheine
+- `NewVoucher.html` - Erstellungsformular für Gutscheine
 
 ## Bearbeitbare Felder
 
+### Türchen-Felder
 - **Türchen-Nummer**: Tag des Adventskalenders (1-31)
 - **Titel**: Überschrift des Türchens (erforderlich)
 - **Kurzbeschreibung**: Kurzzusammenfassung
@@ -51,12 +79,26 @@ Das Management Plugin ist ein Frontend-Plugin, das es Benutzern ermöglicht, Adv
 - **Link**: Optional externe URL
 - **Status**: Aktiv/Inaktiv
 
+### Gutschein-Felder
+- **Titel**: Überschrift des Gutscheins (erforderlich)
+- **Beschreibung**: Detaillierte Beschreibung des Gutscheins
+- **Für**: Name des Empfängers
+- **Von**: Name des Absenders
+- **Design**: Klassisch, Modern oder Elegant
+
 ## Code-Struktur
 
 ```
 Classes/
 ├── Controller/
 │   └── ManagementController.php
+└── Domain/
+    ├── Model/
+    │   ├── Door.php
+    │   └── Voucher.php
+    └── Repository/
+        ├── DoorRepository.php
+        └── VoucherRepository.php
 
 Configuration/
 ├── FlexForms/
@@ -70,7 +112,10 @@ Resources/Private/
 └── Templates/Management/
     ├── Index.html
     ├── Edit.html
-    └── New.html
+    ├── New.html
+    ├── Vouchers.html
+    ├── EditVoucher.html
+    └── NewVoucher.html
 ```
 
 ## Design-Klassen und Styling
@@ -137,12 +182,22 @@ Das Plugin nutzt TYPO3s eingebaute Extbase-Funktionen:
 
 ## Erweiterungsmöglichkeiten
 
+### Türchen
 - Benutzer-Authentifizierung hinzufügen
 - Datei-Upload für Bilder/Videos ermöglichen
 - Pagination implementieren
 - Export-Funktion (PDF/CSV)
 - Sortierbare Tabelle statt Gitter
 - Bulk-Aktionen (z.B. mehrere löschen)
+
+### Gutscheine
+- Gutschein-Codes/Nummern hinzufügen
+- PDF-Download für Gutscheine
+- Druckversion mit besserer Formatierung
+- Gültigkeit/Ablaufdatum für Gutscheine
+- Kategorien/Tags für Gutscheine
+- E-Mail-Versand von Gutscheinen
+- Gutschein-Vorlagen speichern
 
 ## Fehlerbehandlung
 

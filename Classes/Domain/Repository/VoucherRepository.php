@@ -7,10 +7,10 @@ namespace Hamstah\Adventskalender\Domain\Repository;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
-class DoorRepository extends Repository
+class VoucherRepository extends Repository
 {
     protected $defaultOrderings = [
-        'day' => QueryInterface::ORDER_ASCENDING,
+        'crdate' => QueryInterface::ORDER_DESCENDING,
     ];
 
     public function initializeObject(): void
@@ -22,20 +22,29 @@ class DoorRepository extends Repository
         $this->setDefaultQuerySettings($querySettings);
     }
 
-    public function findByDay(int $day): ?object
+    public function findByHeadline(string $headline): ?object
     {
         $query = $this->createQuery();
         $query->matching(
-            $query->equals('day', $day)
+            $query->equals('headline', $headline)
         );
         return $query->execute()->getFirst();
     }
 
-    public function findActive(): \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+    public function findByDesign(string $design): \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
     {
         $query = $this->createQuery();
         $query->matching(
-            $query->equals('isActive', true)
+            $query->equals('design', $design)
+        );
+        return $query->execute();
+    }
+
+    public function findByDay(int $day): \TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+    {
+        $query = $this->createQuery();
+        $query->matching(
+            $query->equals('day', $day)
         );
         return $query->execute();
     }

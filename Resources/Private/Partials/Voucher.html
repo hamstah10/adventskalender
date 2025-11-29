@@ -1,6 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
-<f:if condition="{voucher}">
+<f:if condition="{voucher} && !{voucher.deleted}">
     <div class="voucher-container">
         <f:if condition="{voucher.design} == 'santa'">
             <f:then>

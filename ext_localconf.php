@@ -24,10 +24,10 @@ ExtensionUtility::configurePlugin(
     'Adventskalender',
     'Management',
     [
-        \Hamstah\Adventskalender\Controller\ManagementController::class => 'index, edit, update, new, create, delete',
+        \Hamstah\Adventskalender\Controller\ManagementController::class => 'index, edit, update, new, create, delete, vouchers, editVoucher, updateVoucher, newVoucher, createVoucher, deleteVoucher',
     ],
     [
-        \Hamstah\Adventskalender\Controller\ManagementController::class => 'update, create, delete',
+        \Hamstah\Adventskalender\Controller\ManagementController::class => 'update, create, delete, updateVoucher, createVoucher, deleteVoucher',
     ]
 );
 
