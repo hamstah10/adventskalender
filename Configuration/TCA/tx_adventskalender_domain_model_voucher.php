@@ -23,7 +23,7 @@ return [
         '1' => [
             'showitem' => '
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:general,
-                    headline, for_name, description, from_name, design,
+                    headline, for_name, description, from_name, design, voucher_code,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language,
                     sys_language_uid, l10n_parent, l10n_diffsource,
                 --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access,
@@ -133,6 +133,17 @@ return [
                     ['label' => 'LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:tx_adventskalender_domain_model_voucher.design.santa', 'value' => 'santa'],
                 ],
                 'default' => 'classic',
+            ],
+        ],
+        'voucher_code' => [
+            'exclude' => false,
+            'label' => 'LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:tx_adventskalender_domain_model_voucher.voucher_code',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'max' => 255,
+                'eval' => 'trim',
+                'placeholder' => 'z.B. XMAS-2025-001',
             ],
         ],
         'door' => [

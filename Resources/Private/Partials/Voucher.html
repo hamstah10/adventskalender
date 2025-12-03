@@ -1,5 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <f:if condition="{voucher} && !{voucher.deleted}">
     <div class="voucher-container">
         <f:if condition="{voucher.design} == 'santa'">
@@ -21,6 +23,13 @@
                         <div class="voucher-from">
                             <span class="voucher-label">Von:</span>
                             <span class="voucher-name">{voucher.fromName}</span>
+                        </div>
+                        <div class="voucher-code-section">
+                            <div class="voucher-qrcode" id="qrcode-santa-{voucher.uid}"></div>
+                            <div class="voucher-code-text">
+                                <span class="voucher-code-label">Code:</span>
+                                <span class="voucher-code">{voucher.voucherCode}</span>
+                            </div>
                         </div>
                         <div class="voucher-santa-footer">
                             🎄 Ho Ho Ho! 🎄
@@ -49,6 +58,13 @@
                                 <span class="voucher-label">Von:</span>
                                 <span class="voucher-name">{voucher.fromName}</span>
                             </div>
+                            <div class="voucher-code-section">
+                                <div class="voucher-qrcode" id="qrcode-classic-{voucher.uid}"></div>
+                                <div class="voucher-code-text">
+                                    <span class="voucher-code-label">Code:</span>
+                                    <span class="voucher-code">{voucher.voucherCode}</span>
+                                </div>
+                            </div>
                         </div>
                         <div class="voucher-footer">
                             <div class="voucher-snowflakes">🎄 ⭐ 🎄 ⭐ 🎄</div>
@@ -65,5 +81,29 @@
         </div>
     </div>
 </f:if>
+
+<script>
+    // Generate QR codes for vouchers
+    document.addEventListener('DOMContentLoaded', function() {
+        const voucherElements = document.querySelectorAll('[id^="qrcode-"]');
+        voucherElements.forEach(function(element) {
+            // Extract the voucher code from the nearby code span
+            const voucherSection = element.closest('.voucher-code-section');
+            if (voucherSection) {
+                const codeSpan = voucherSection.querySelector('.voucher-code');
+                if (codeSpan && codeSpan.textContent.trim()) {
+                    new QRCode(element, {
+                        text: codeSpan.textContent.trim(),
+                        width: 120,
+                        height: 120,
+                        colorDark: '#000000',
+                        colorLight: '#ffffff',
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                }
+            }
+        });
+    });
+</script>
 
 </html>

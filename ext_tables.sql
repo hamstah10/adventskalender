@@ -45,6 +45,7 @@ CREATE TABLE tx_adventskalender_domain_model_voucher (
     description text,
     from_name varchar(255) DEFAULT '' NOT NULL,
     design varchar(50) DEFAULT 'classic' NOT NULL,
+    voucher_code varchar(255) DEFAULT '' NOT NULL,
     door int(11) unsigned DEFAULT '0' NOT NULL,
 
     tstamp int(11) unsigned DEFAULT '0' NOT NULL,
@@ -58,5 +59,26 @@ CREATE TABLE tx_adventskalender_domain_model_voucher (
     l10n_source int(11) DEFAULT '0' NOT NULL,
 
     PRIMARY KEY (uid),
-    KEY parent (pid)
+    KEY parent (pid),
+    KEY voucher_code (voucher_code)
+);
+
+CREATE TABLE tx_adventskalender_domain_model_doorlog (
+    uid int(11) NOT NULL auto_increment,
+    pid int(11) DEFAULT '0' NOT NULL,
+
+    door int(11) unsigned DEFAULT '0' NOT NULL,
+    opened_at int(11) unsigned DEFAULT '0' NOT NULL,
+    ip_address varchar(45) DEFAULT '' NOT NULL,
+    user_agent text,
+    referer varchar(2048) DEFAULT '' NOT NULL,
+
+    tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+    crdate int(11) unsigned DEFAULT '0' NOT NULL,
+    deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
+
+    PRIMARY KEY (uid),
+    KEY parent (pid),
+    KEY door (door),
+    KEY opened_at (opened_at)
 );

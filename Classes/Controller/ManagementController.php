@@ -12,12 +12,14 @@ use Hamstah\Adventskalender\Domain\Model\Door;
 use Hamstah\Adventskalender\Domain\Model\Voucher;
 use Hamstah\Adventskalender\Domain\Repository\DoorRepository;
 use Hamstah\Adventskalender\Domain\Repository\VoucherRepository;
+use Hamstah\Adventskalender\Domain\Repository\DoorLogRepository;
 
 class ManagementController extends ActionController
 {
     public function __construct(
         private readonly DoorRepository $doorRepository,
-        private readonly VoucherRepository $voucherRepository
+        private readonly VoucherRepository $voucherRepository,
+        private readonly DoorLogRepository $doorLogRepository
     ) {}
 
     public function initializeCreateVoucherAction(): void
@@ -180,5 +182,26 @@ class ManagementController extends ActionController
         );
 
         return $this->redirect('vouchers');
+    }
+
+    public function logsAction(): ResponseInterface
+    {
+        $logs = $this->doorLogRepository->findAll();
+        $doors = $this->doorRepository->findAll();
+        $this->view->assign('logs', $logs);
+        $this->view->assign('doors', $doors);
+        return $this->htmlResponse();
+    }
+
+    public function doorLogsAction(?Door $door = null): ResponseInterface
+    {
+        if ($door === null) {
+            return $this->redirect('logs');
+        }
+
+        $logs = $this->doorLogRepository->findByDoor($door->getUid());
+        $this->view->assign('door', $door);
+        $this->view->assign('logs', $logs);
+        return $this->htmlResponse();
     }
 }

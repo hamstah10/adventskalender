@@ -1,14 +1,14 @@
 plugin.tx_adventskalender {
     settings {
         voucherHeadline = Geschenkgutschein
-        doorUnlockedColorStart = #0f7c3c
-        doorUnlockedColorEnd = #2d5016
-        doorLockedColorStart = #c31432
-        doorLockedColorEnd = #d32f2f
+        doorUnlockedColorStart = #c31432
+        doorUnlockedColorEnd = #d32f2f
+        doorLockedColorStart = #0f7c3c
+        doorLockedColorEnd = #2d5016
         musicEnabled = 1
         musicPath = /_assets/650af2e25ff4c4dcc48a2c838cf21ed4/Music/song_christmas.mp3
-        specialChristmasColorStart = #ffd700
-        specialChristmasColorEnd = #ff8c00
+        specialChristmasColorStart = #c31432
+        specialChristmasColorEnd = #d32f2f
         specialNikolausColorStart = #ff0000
         specialNikolausColorEnd = #8b0000
         snowEnabled = 1

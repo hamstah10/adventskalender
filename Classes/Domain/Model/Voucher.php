@@ -12,6 +12,7 @@ class Voucher extends AbstractEntity
     protected string $description = '';
     protected string $fromName = '';
     protected string $design = 'classic';
+    protected string $voucherCode = '';
     protected ?Door $door = null;
 
     public function getHeadline(): string
@@ -62,6 +63,16 @@ class Voucher extends AbstractEntity
     public function setDesign(string $design): void
     {
         $this->design = $design;
+    }
+
+    public function getVoucherCode(): string
+    {
+        return $this->voucherCode;
+    }
+
+    public function setVoucherCode(string $voucherCode): void
+    {
+        $this->voucherCode = $voucherCode;
     }
 
     public function getDoor(): ?Door

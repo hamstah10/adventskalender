@@ -122,12 +122,22 @@ class Door extends AbstractEntity
 
     public function getIsUnlocked(): bool
     {
-        return true;
+        return $this->isUnlocked();
     }
 
     public function isUnlocked(): bool
     {
-        return true;
+        // Get current day of December in Berlin timezone
+        $currentDate = new \DateTime('now', new \DateTimeZone('Europe/Berlin'));
+        $currentDay = (int)$currentDate->format('d');
+        $currentMonth = (int)$currentDate->format('m');
+        
+        // Only unlock if we're in December
+        if ($currentMonth !== 12) {
+            return false;
+        }
+        
+        return $this->day <= $currentDay && $this->day >= 1 && $this->day <= 24;
     }
 
     public function getVoucher(): ?Voucher

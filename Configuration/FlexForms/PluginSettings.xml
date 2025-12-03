@@ -24,6 +24,24 @@
                             <eval>trim</eval>
                         </config>
                     </settings.customDescription>
+                    <settings.layoutType>
+                        <label>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:flexform.layoutType</label>
+                        <config>
+                            <type>select</type>
+                            <renderType>selectSingle</renderType>
+                            <items>
+                                <numIndex index="0">
+                                    <label>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:flexform.layoutType.list</label>
+                                    <value>list</value>
+                                </numIndex>
+                                <numIndex index="1">
+                                    <label>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:flexform.layoutType.grid</label>
+                                    <value>grid</value>
+                                </numIndex>
+                            </items>
+                            <default>list</default>
+                        </config>
+                    </settings.layoutType>
                     <settings.backgroundImage>
                         <label>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:flexform.backgroundImage</label>
                         <config>
@@ -57,6 +75,10 @@
                                 <numIndex index="6">
                                     <label>Adventcal BG5</label>
                                     <value>bg_holz.jpg</value>
+                                </numIndex>
+                                <numIndex index="">
+                                    <label>Adventcal BG6</label>
+                                    <value>130.jpg</value>
                                 </numIndex>
                             </items>
                         </config>

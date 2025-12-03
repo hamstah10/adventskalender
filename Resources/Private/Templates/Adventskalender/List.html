@@ -3,6 +3,7 @@
 <f:layout name="Default" />
 
 <f:section name="Content">
+    
     <style>
         :root {
             --door-unlocked-start: <f:format.raw>{settings.doorUnlockedColorStart}</f:format.raw>;
@@ -16,12 +17,14 @@
             --lightbox-accent: <f:format.raw>{settings.lightboxAccentColor}</f:format.raw>;
             --lightbox-bg: <f:format.raw>{settings.lightboxBackgroundColor}</f:format.raw>;
         }
-        <f:if condition="{settings.snowEnabled} == 0">
+    </style>
+    <f:if condition="{settings.snowEnabled} == '0'">
+    <style>
         .snowflake {
             display: none !important;
         }
-        </f:if>
     </style>
+    </f:if>
     
     <!-- Hintergrundmusik -->
     <f:if condition="{settings.musicEnabled}">
@@ -41,8 +44,9 @@
     <img src="/_assets/650af2e25ff4c4dcc48a2c838cf21ed4/Images/pferd.png" alt="Pferd" class="deco-horse">
     <img src="/_assets/650af2e25ff4c4dcc48a2c838cf21ed4/Images/renntier.png" alt="Rentier" class="deco-reindeer">
 
-    <f:variable name="bgImageUrl">{f:if(condition: '{settings.backgroundImage}', then: '{f:uri.resource(path: \'EXT:adventskalender/Resources/Public/Images/{settings.backgroundImage}\')}')}</f:variable>
-    <div class="adventskalender-wrapper p-1 p-lg-5" style="{f:if(condition: '{settings.backgroundImage}', then: 'background-image: url({bgImageUrl});')}">
+    <f:variable name="bgImageUrl"><f:if condition="{settings.backgroundImage}"><f:uri.resource path="EXT:adventskalender/Resources/Public/Images/{settings.backgroundImage}" /></f:if></f:variable>
+    <f:variable name="wrapperStyle"><f:if condition="{settings.backgroundImage}">background-image: url({bgImageUrl});</f:if></f:variable>
+    <div class="adventskalender-wrapper p-1 p-lg-5" data-layout="{settings.layoutType}" data-debug="{settings.layoutType}" style="{wrapperStyle}">
        <div class="container">
             <div class="text-center mb-5">
                 <h1 class="display-4 fw-bold mb-3 animate__animated animate__fadeInDown">
@@ -55,17 +59,16 @@
                 </p>
             </div>
             
-            <div class="row g-4">
-               
-                        <f:variable name="doorOrder" value="{0: 12, 1: 5, 2: 18, 3: 1, 4: 21, 5: 9, 6: 15, 7: 3, 8: 24, 9: 7, 10: 14, 11: 20, 12: 2, 13: 16, 14: 11, 15: 6, 16: 23, 17: 8, 18: 19, 19: 4, 20: 13, 21: 10, 22: 22, 23: 17}" />
+            <!-- Grid Layout (hidden by default, shown when layoutType=grid) -->
+            <f:variable name="standardLayoutStyle"><f:if condition="{settings.layoutType} == 'grid'">display: none !important;</f:if><f:if condition="{settings.layoutType} != 'grid'">display: flex !important; flex-wrap: wrap;</f:if></f:variable>
+            <div class="row g-4 doors-grid" id="standardLayout" style="{standardLayoutStyle}">
                 
-                        <f:for each="{doorOrder}" as="dayNumber" iteration="iterator">
-                            <f:for each="{doors}" as="door">
-                                <f:if condition="{door.day} == {dayNumber}">
-                                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 animate__animated animate__fadeInUp animate__faster" style="animation-delay: calc({iterator.index} * 0.05s);">
-                                        <f:if condition="{door.day} == 6 || {door.day} == 24">
-                                            <f:then>
-                                                <a href="#" class="door-card ribbon-box unlocked text-decoration-none {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.customStyle}', then: 'custom-style')}" onclick="openLightbox({door.uid}); return false;" style="{f:if(condition: '{door.customStyle}', then: 'background: linear-gradient(135deg, {door.customColorStart} 0%, {door.customColorEnd} 100%); {f:if(condition: \'{door.customBorderWidth} > 0\', then: \'border: {door.customBorderWidth}px solid {door.customBorderColor};\')}')};">
+                          <f:for each="{doors}" as="door" iteration="iterator">
+                                      <div class="door-item col-6 col-sm-4 col-md-3 col-lg-2 animate__animated animate__fadeInUp animate__faster door-item-{iterator.index}">
+                                          <f:if condition="{currentMonth} == 12 AND {door.day} <= {currentDay}">
+                                                     <f:then>
+<f:variable name="customStyleAttr"><f:if condition="{door.customStyle}">background: linear-gradient(135deg, {door.customColorStart} 0%, {door.customColorEnd} 100%);<f:if condition="{door.customBorderWidth} > 0"> border: {door.customBorderWidth}px solid {door.customBorderColor};</f:if></f:if></f:variable>
+                                                <a href="#" class="door-card ribbon-box unlocked text-decoration-none {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.customStyle}', then: 'custom-style')}" onclick="openLightbox({door.uid}); return false;" style="{customStyleAttr}">
                                                   <div class="ribbon-two ribbon-two-primary"><span>🔥</span></div>
                                                     <div class="door-inner">
                                                         <div class="door-number-badge {f:if(condition: '{door.day} == 24', then: 'bg-warning', else: 'bg-success')}">{door.day}</div>
@@ -109,16 +112,185 @@
                                                 </div>
                                             </f:else>
                                         </f:if>
-                                    </div>
-                                </f:if>
-                            </f:for>
-                        </f:for>
+                                        </div>
+                                        </f:for>
                     
                
             </div>
-       
-        
-        <f:for each="{doors}" as="door">
+
+            <!-- Grid Calendar Layout (6x4) -->
+            <f:variable name="gridLayoutStyle"><f:if condition="{settings.layoutType} == 'grid'">display: block !important; clear: both;</f:if><f:if condition="{settings.layoutType} != 'grid'">display: none !important; clear: both;</f:if></f:variable>
+                         <div class="calendar-grid-wrapper" id="gridLayout" style="{gridLayoutStyle}">
+                <style>
+                    #gridLayout ~ style {display: none;}
+                </style>
+             <div class="calendar-grid">
+                 <f:for each="{0..23}" as="day">
+                     <f:variable name="dayNumber" value="{day + 1}" />
+                     <f:for each="{doors}" as="door">
+                         <f:if condition="{door.day} == {dayNumber}">
+                             <f:if condition="{currentMonth} == 12 AND {door.day} <= {currentDay}">
+                                 <f:then>
+                                     <a href="#" class="calendar-door unlocked {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')}" onclick="openLightbox({door.uid}); return false;">
+                                         <div class="calendar-door-inner">
+                                             <div class="calendar-door-number">{door.day}</div>
+                                             <f:switch expression="{door.day}">
+                                                 <f:case value="1"><span class="calendar-door-icon">🎁</span></f:case>
+                                                 <f:case value="2"><span class="calendar-door-icon">⭐</span></f:case>
+                                                 <f:case value="3"><span class="calendar-door-icon">❄️</span></f:case>
+                                                 <f:case value="4"><span class="calendar-door-icon">🔔</span></f:case>
+                                                 <f:case value="5"><span class="calendar-door-icon">🕯️</span></f:case>
+                                                 <f:case value="6"><span class="calendar-door-icon">🎅</span></f:case>
+                                                 <f:case value="7"><span class="calendar-door-icon">🦌</span></f:case>
+                                                 <f:case value="8"><span class="calendar-door-icon">⛄</span></f:case>
+                                                 <f:case value="9"><span class="calendar-door-icon">🎶</span></f:case>
+                                                 <f:case value="10"><span class="calendar-door-icon">🌟</span></f:case>
+                                                 <f:case value="11"><span class="calendar-door-icon">🧦</span></f:case>
+                                                 <f:case value="12"><span class="calendar-door-icon">🍪</span></f:case>
+                                                 <f:case value="13"><span class="calendar-door-icon">🎀</span></f:case>
+                                                 <f:case value="14"><span class="calendar-door-icon">🏠</span></f:case>
+                                                 <f:case value="15"><span class="calendar-door-icon">🎵</span></f:case>
+                                                 <f:case value="16"><span class="calendar-door-icon">🥾</span></f:case>
+                                                 <f:case value="17"><span class="calendar-door-icon">🪔</span></f:case>
+                                                 <f:case value="18"><span class="calendar-door-icon">🎊</span></f:case>
+                                                 <f:case value="19"><span class="calendar-door-icon">🎉</span></f:case>
+                                                 <f:case value="20"><span class="calendar-door-icon">🎺</span></f:case>
+                                                 <f:case value="21"><span class="calendar-door-icon">👼</span></f:case>
+                                                 <f:case value="22"><span class="calendar-door-icon">🎀</span></f:case>
+                                                 <f:case value="23"><span class="calendar-door-icon">⛪</span></f:case>
+                                                 <f:case value="24"><span class="calendar-door-icon">🎄</span></f:case>
+                                             </f:switch>
+                                             <div class="calendar-door-title">{door.title}</div>
+                                         </div>
+                                     </a>
+                                 </f:then>
+                                 <f:else>
+                                     <div class="calendar-door locked" onclick="playZonkSound()">
+                                         <div class="calendar-door-inner">
+                                             <div class="calendar-door-number">{door.day}</div>
+                                             <span class="calendar-door-icon">🔒</span>
+                                         </div>
+                                     </div>
+                                 </f:else>
+                             </f:if>
+                         </f:if>
+                     </f:for>
+                 </f:for>
+             </div>
+            </div>
+
+            <!-- Grid CSS -->
+            <style>
+             .calendar-grid-wrapper {
+                 background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%);
+                 padding: 2rem;
+                 border-radius: 15px;
+                 box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+             }
+             .calendar-grid {
+                 display: grid !important;
+                 grid-template-columns: repeat(6, 1fr) !important;
+                 gap: 1rem !important;
+                 max-width: 100% !important;
+                 margin: 0 auto !important;
+                 width: 100% !important;
+             }
+             .calendar-door {
+                 position: relative !important;
+                 aspect-ratio: 1 !important;
+                 cursor: pointer !important;
+                 transition: all 0.3s ease !important;
+                 display: block !important;
+                 width: 100% !important;
+                 text-decoration: none !important;
+             }
+             .calendar-door:hover {
+                 transform: scale(1.05);
+             }
+             .calendar-door.locked {
+                 opacity: 0.6;
+             }
+             .calendar-door-inner {
+                 width: 100% !important;
+                 height: 100% !important;
+                 display: flex !important;
+                 flex-direction: column !important;
+                 align-items: center !important;
+                 justify-content: center !important;
+                 border-radius: 8px !important;
+                 font-weight: bold !important;
+                 position: relative !important;
+                 overflow: hidden !important;
+                 border: 3px solid rgba(255, 255, 255, 0.2) !important;
+                 aspect-ratio: 1 !important;
+             }
+             .calendar-door.unlocked .calendar-door-inner {
+                 background: linear-gradient(135deg, var(--door-unlocked-start) 0%, var(--door-unlocked-end) 100%);
+                 box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+             }
+             .calendar-door.unlocked.special-christmas .calendar-door-inner {
+                 background: linear-gradient(135deg, var(--door-christmas-start) 0%, var(--door-christmas-end) 100%);
+                 box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+             }
+             .calendar-door.unlocked.special-nikolaus .calendar-door-inner {
+                 background: linear-gradient(135deg, var(--door-nikolaus-start) 0%, var(--door-nikolaus-end) 100%);
+                 box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+             }
+             .calendar-door.locked .calendar-door-inner {
+                 background: linear-gradient(135deg, var(--door-locked-start) 0%, var(--door-locked-end) 100%);
+                 box-shadow: 0 5px 15px rgba(158, 158, 158, 0.3);
+             }
+             .calendar-door-number {
+                 position: absolute;
+                 top: 5px;
+                 right: 8px;
+                 background: rgba(0, 0, 0, 0.3);
+                 padding: 3px 8px;
+                 border-radius: 4px;
+                 font-size: 0.7em;
+                 font-weight: bold;
+             }
+             .calendar-door-icon {
+                 font-size: 2em;
+                 margin-bottom: 0.3rem;
+                 display: block;
+             }
+             .calendar-door-title {
+                 font-size: 0.7em;
+                 text-align: center;
+                 color: white;
+                 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+                 overflow: hidden;
+                 text-overflow: ellipsis;
+                 display: -webkit-box;
+                 -webkit-line-clamp: 2;
+                 -webkit-box-orient: vertical;
+                 padding: 0 3px;
+             }
+             .calendar-door.locked .calendar-door-title {
+                 display: none;
+             }
+             .calendar-door.locked .calendar-door-icon {
+                 font-size: 1.5em;
+             }
+             @media (max-width: 768px) {
+                 .calendar-grid {
+                     grid-template-columns: repeat(4, 1fr) !important;
+                     gap: 0.8rem !important;
+                 }
+             }
+             @media (max-width: 480px) {
+                 .calendar-grid {
+                     grid-template-columns: repeat(3, 1fr) !important;
+                     gap: 0.6rem !important;
+                 }
+                 .calendar-grid-wrapper {
+                     padding: 1rem !important;
+                 }
+             }
+            </style>
+            
+            <f:for each="{doors}" as="door">
             <div class="lightbox" id="lightbox{door.uid}" style="display: none;">
                 <div class="lightbox-overlay" onclick="closeLightbox({door.uid})"></div>
                 <div class="lightbox-content">
@@ -155,8 +327,11 @@
                         </h2>
                     </div>
                     <div class="lightbox-body">
-                        <div class="lightbox-grid">
-                            <div class="lightbox-content-col">
+                        
+                            <f:if condition="{door.voucher}">
+                            <f:then>
+                                <div class="lightbox-grid">
+                                      <div class="lightbox-content-col">
                                 <f:if condition="{door.image}">
                                     <div class="door-image mb-4 text-center">
                                         <f:image image="{door.image}" alt="{door.title}" class="img-fluid rounded shadow" style="max-height: 400px;" />
@@ -202,12 +377,68 @@
                                         </a>
                                     </div>
                                 </f:if>
-                            </div>
+                                    </div>
+
+                                    <div class="lightbox-voucher-col">
+                                        <f:render partial="Voucher" arguments="{voucher: door.voucher, settings: settings, day: door.day}" />
+                                    </div>
+                                </div>
+                            </f:then>
+                            <f:else>
+                                <div class="lightbox-content-col">
+                                <f:if condition="{door.image}">
+                                    <div class="door-image mb-4 text-center">
+                                        <f:image image="{door.image}" alt="{door.title}" class="img-fluid rounded shadow" style="max-height: 400px;" />
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.video}">
+                                    <div class="door-video mb-4 text-center">
+                                        <video controls class="w-100 rounded shadow" style="max-height: 400px;">
+                                            <source src="{door.video.originalResource.publicUrl}" type="{door.video.originalResource.mimeType}">
+                                            Dein Browser unterstützt keine Videos.
+                                        </video>
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.audio}">
+                                    <div class="door-audio mb-4">
+                                        <audio controls class="w-100">
+                                            <source src="{door.audio.originalResource.publicUrl}" type="{door.audio.originalResource.mimeType}">
+                                            Dein Browser unterstützt keine Audio-Dateien.
+                                        </audio>
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.description}">
+                                    <div class="door-description mb-4">
+                                        <div class="alert alert-danger bg-opacity-10 border-danger">
+                                            <i class="bi bi-info-circle"></i> {door.description}
+                                        </div>
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.content}">
+                                    <div class="door-content mb-4">
+                                        <f:format.html>{door.content}</f:format.html>
+                                    </div>
+                                </f:if>
+                                
+                                <f:if condition="{door.link}">
+                                    <div class="door-link text-center">
+                                        <a href="{door.link}" target="_blank" class="btn btn-outline-danger btn-lg">
+                                            <i class="bi bi-link-45deg"></i> <f:translate key="LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:link.open" />
+                                        </a>
+                                    </div>
+                                </f:if>
+                                    </div>
+                            </f:else>
+                            </f:if>
+                               
                             
-                            <div class="lightbox-voucher-col">
-                                <f:render partial="Voucher" arguments="{voucher: door.voucher, settings: settings, day: door.day}" />
-                            </div>
-                        </div>
+                            
+                        
+
                     </div>
                 </div>
             </div>
@@ -248,22 +479,24 @@
         }
         
         function downloadVoucher() {
-            const voucher = document.getElementById('voucherElement');
-            if (!voucher) return;
-            
-            html2canvas(voucher, {
-                backgroundColor: '#ffffff',
-                scale: 2,
-                logging: false
-            }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = 'Gutschein.png';
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-            });
-        }
-    </script>
-    
-</f:section>
+             const voucher = document.getElementById('voucherElement');
+             if (!voucher) return;
+             
+             html2canvas(voucher, {
+                 backgroundColor: '#ffffff',
+                 scale: 2,
+                 logging: false
+             }).then(canvas => {
+                 const link = document.createElement('a');
+                 link.download = 'Gutschein.png';
+                 link.href = canvas.toDataURL('image/png');
+                 link.click();
+             });
+         }
+        
 
-</html>
+         </script>
+         
+         </f:section>
+
+         </html>

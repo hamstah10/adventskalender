@@ -75,6 +75,9 @@
       <trans-unit id="tx_adventskalender_domain_model_voucher.design.santa">
         <source>Weihnachtsmann</source>
       </trans-unit>
+      <trans-unit id="tx_adventskalender_domain_model_voucher.voucher_code">
+        <source>Gutschein-Code (eindeutig)</source>
+      </trans-unit>
       <trans-unit id="plugin.calendar.title">
         <source>Adventskalender</source>
       </trans-unit>
@@ -89,6 +92,15 @@
       </trans-unit>
       <trans-unit id="flexform.customDescription">
         <source>Beschreibungstext (optional)</source>
+      </trans-unit>
+      <trans-unit id="flexform.layoutType">
+        <source>Layout-Typ</source>
+      </trans-unit>
+      <trans-unit id="flexform.layoutType.list">
+        <source>Standard (Durcheinander)</source>
+      </trans-unit>
+      <trans-unit id="flexform.layoutType.grid">
+        <source>Adventskalender-Grid (6×4)</source>
       </trans-unit>
       <trans-unit id="plugin.calendar.description">
         <source>Zeigt einen Adventskalender mit 24 Türchen an</source>
