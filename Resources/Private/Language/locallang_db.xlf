@@ -120,6 +120,27 @@
       <trans-unit id="plugin.management.flexform.allowDelete">
         <source>Löschen erlauben</source>
       </trans-unit>
+      <trans-unit id="plugin.overview.title">
+        <source>Adventskalender - Übersicht</source>
+      </trans-unit>
+      <trans-unit id="plugin.overview.description">
+        <source>Zeigt alle verfügbaren Adventskalender-Inhalte in einer Übersichtsseite</source>
+      </trans-unit>
+      <trans-unit id="plugin.overview.settings">
+        <source>Übersicht-Einstellungen</source>
+      </trans-unit>
+      <trans-unit id="plugin.overview.displayMode">
+        <source>Anzeigemodus</source>
+      </trans-unit>
+      <trans-unit id="plugin.overview.displayMode.list">
+        <source>Listendarstellung</source>
+      </trans-unit>
+      <trans-unit id="plugin.overview.displayMode.grid">
+        <source>Grid-Darstellung</source>
+      </trans-unit>
+      <trans-unit id="plugin.overview.itemsPerPage">
+        <source>Einträge pro Seite</source>
+      </trans-unit>
       <trans-unit id="dashboard.widget.door.title">
         <source>Adventskalender - Türen</source>
       </trans-unit>

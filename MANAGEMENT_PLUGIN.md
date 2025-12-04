@@ -61,8 +61,8 @@ Das Management Plugin ist ein Frontend-Plugin, das es Benutzern ermöglicht, Adv
 
 #### Türchen-Templates
 - `Index.html` - Übersichtsseite mit Türchen-Tabelle
-- `Edit.html` - Bearbeitungsformular für Türchen
-- `New.html` - Erstellungsformular für Türchen
+- `Edit.html` - Bearbeitungsformular für Türchen (mit Gutschein-Zuordnung)
+- `New.html` - Erstellungsformular für Türchen (mit Gutschein-Zuordnung)
 
 #### Gutschein-Templates
 - `Vouchers.html` - Übersichtsseite mit Gutschein-Tabelle
@@ -77,6 +77,7 @@ Das Management Plugin ist ein Frontend-Plugin, das es Benutzern ermöglicht, Adv
 - **Kurzbeschreibung**: Kurzzusammenfassung
 - **Hauptinhalt**: Ausführlicher Text/HTML
 - **Link**: Optional externe URL
+- **Gutschein**: Optional einen existierenden Gutschein zuordnen oder neuen Gutschein erstellen
 - **Status**: Aktiv/Inaktiv
 
 ### Gutschein-Felder

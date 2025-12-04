@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+    <sheets>
+        <sDEF>
+            <ROOT>
+                <TCEforms>
+                    <sheetTitle>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:plugin.overview.settings</sheetTitle>
+                </TCEforms>
+                <type>array</type>
+                <el>
+                    <settings.displayMode>
+                        <TCEforms>
+                            <label>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:plugin.overview.displayMode</label>
+                            <config>
+                                <type>select</type>
+                                <renderType>selectSingle</renderType>
+                                <items>
+                                    <numIndex index="0">
+                                        <numIndex index="0">LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:plugin.overview.displayMode.list</numIndex>
+                                        <numIndex index="1">index</numIndex>
+                                    </numIndex>
+                                    <numIndex index="1">
+                                        <numIndex index="0">LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:plugin.overview.displayMode.grid</numIndex>
+                                        <numIndex index="1">grid</numIndex>
+                                    </numIndex>
+                                </items>
+                                <default>index</default>
+                            </config>
+                        </TCEforms>
+                    </settings.displayMode>
+                    <settings.itemsPerPage>
+                        <TCEforms>
+                            <label>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:plugin.overview.itemsPerPage</label>
+                            <config>
+                                <type>number</type>
+                                <default>12</default>
+                                <min>1</min>
+                                <max>50</max>
+                            </config>
+                        </TCEforms>
+                    </settings.itemsPerPage>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

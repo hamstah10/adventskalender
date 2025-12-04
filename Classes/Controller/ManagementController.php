@@ -53,7 +53,9 @@ class ManagementController extends ActionController
             return $this->redirect('index');
         }
 
+        $vouchers = $this->voucherRepository->findAll();
         $this->view->assign('door', $door);
+        $this->view->assign('vouchers', $vouchers);
         return $this->htmlResponse();
     }
 
@@ -73,7 +75,9 @@ class ManagementController extends ActionController
     public function newAction(): ResponseInterface
     {
         $door = new Door();
+        $vouchers = $this->voucherRepository->findAll();
         $this->view->assign('door', $door);
+        $this->view->assign('vouchers', $vouchers);
         return $this->htmlResponse();
     }
 

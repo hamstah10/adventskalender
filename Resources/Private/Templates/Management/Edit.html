@@ -172,6 +172,19 @@
             </div>
 
             <div class="section">
+                <h2>Gutschein</h2>
+
+                <div class="form-group">
+                    <label for="voucher">Gutschein zuordnen (optional)</label>
+                    <f:if condition="{door.voucher}">
+                        <div class="help-text" style="color: #28a745; margin-bottom: 10px;">✓ Gutschein zugeordnet: {door.voucher.headline}</div>
+                    </f:if>
+                    <f:form.select id="voucher" property="voucher" options="{vouchers}" optionLabelField="headline" />
+                    <div class="help-text">Wähle einen Gutschein aus oder <f:link.action action="newVoucher" arguments="{doorUid: door.uid}">erstelle einen neuen</f:link.action></div>
+                </div>
+            </div>
+
+            <div class="section">
                 <h2>Status</h2>
 
                 <div class="form-group">

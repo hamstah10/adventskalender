@@ -36,3 +36,19 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$manageme
     $managementPluginSignature,
     'FILE:EXT:adventskalender/Configuration/FlexForms/ManagementSettings.xml'
 );
+
+ExtensionUtility::registerPlugin(
+    'Adventskalender',
+    'Overview',
+    'LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:plugin.overview.title',
+    'adventskalender-plugin-overview'
+);
+
+$overviewPluginSignature = 'adventskalender_overview';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$overviewPluginSignature] = 'pi_flexform';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist'][$overviewPluginSignature] = 'recursive,select_key';
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+    $overviewPluginSignature,
+    'FILE:EXT:adventskalender/Configuration/FlexForms/OverviewSettings.xml'
+);

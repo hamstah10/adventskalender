@@ -31,6 +31,15 @@ ExtensionUtility::configurePlugin(
     ]
 );
 
+ExtensionUtility::configurePlugin(
+    'Adventskalender',
+    'Overview',
+    [
+        \Hamstah\Adventskalender\Controller\OverviewController::class => 'index, list, grid',
+    ],
+    []
+);
+
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_pagerenderer.php']['render-preProcess'][] = 
     \Hamstah\Adventskalender\Hooks\PageRendererHook::class . '->addAssets';
 
