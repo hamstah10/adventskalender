@@ -297,7 +297,7 @@
                     <div class="lightbox-day-badge">{door.day}</div>
                     <button class="lightbox-close" onclick="closeLightbox({door.uid})">&times;</button>
                     <div class="lightbox-header">
-                        <h2 class="fs-3 fw-bold">
+                        <h2 class="fs-3 fw-bold text-white">
                             <f:switch expression="{door.day}">
                                 <f:case value="1"><span class="lightbox-icon">🎁</span></f:case>
                                 <f:case value="2"><span class="lightbox-icon">⭐</span></f:case>
@@ -340,7 +340,7 @@
                                 
                                 <f:if condition="{door.video}">
                                     <div class="door-video mb-4 text-center">
-                                        <video controls class="w-100 rounded shadow" style="max-height: 400px;">
+                                        <video controls autoplay muted class="w-100 rounded shadow" style="max-height: 400px;">
                                             <source src="{door.video.originalResource.publicUrl}" type="{door.video.originalResource.mimeType}">
                                             Dein Browser unterstützt keine Videos.
                                         </video>
@@ -349,7 +349,7 @@
                                 
                                 <f:if condition="{door.audio}">
                                     <div class="door-audio mb-4">
-                                        <audio controls class="w-100">
+                                        <audio controls autoplay class="w-100">
                                             <source src="{door.audio.originalResource.publicUrl}" type="{door.audio.originalResource.mimeType}">
                                             Dein Browser unterstützt keine Audio-Dateien.
                                         </audio>
@@ -383,8 +383,8 @@
                                         <f:render partial="Voucher" arguments="{voucher: door.voucher, settings: settings, day: door.day}" />
                                     </div>
                                 </div>
-                            </f:then>
-                            <f:else>
+                                </f:then>
+                                <f:else>
                                 <div class="lightbox-content-col">
                                 <f:if condition="{door.image}">
                                     <div class="door-image mb-4 text-center">
@@ -394,7 +394,7 @@
                                 
                                 <f:if condition="{door.video}">
                                     <div class="door-video mb-4 text-center">
-                                        <video controls class="w-100 rounded shadow" style="max-height: 400px;">
+                                        <video controls autoplay muted class="w-100 rounded shadow" style="max-height: 400px;">
                                             <source src="{door.video.originalResource.publicUrl}" type="{door.video.originalResource.mimeType}">
                                             Dein Browser unterstützt keine Videos.
                                         </video>
@@ -403,7 +403,7 @@
                                 
                                 <f:if condition="{door.audio}">
                                     <div class="door-audio mb-4">
-                                        <audio controls class="w-100">
+                                        <audio controls autoplay class="w-100">
                                             <source src="{door.audio.originalResource.publicUrl}" type="{door.audio.originalResource.mimeType}">
                                             Dein Browser unterstützt keine Audio-Dateien.
                                         </audio>
@@ -432,7 +432,7 @@
                                     </div>
                                 </f:if>
                                     </div>
-                            </f:else>
+                                </f:else>
                             </f:if>
                                
                             
