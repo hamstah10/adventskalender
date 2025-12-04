@@ -286,11 +286,91 @@ Die Extension unterstützt vollständige Übersetzungen:
   - typo3/cms-fluid
 - **Relationen**: Door ↔ Voucher (1:1 Beziehung, bidirektional)
 
+## QR-Code Generierung für Gutscheine
+
+Die Adventskalender-Extension generiert automatisch QR-Codes für Gutscheine. Diese ermöglichen es, Gutscheincodes einfach zu scannen und zu validieren.
+
+### Funktionsweise
+
+- **Client-seitige Generierung**: QR-Codes werden mittels der [qrcodejs](https://davidshimjs.github.io/qrcodejs/) Bibliothek im Frontend generiert
+- **Automatische Erzeugung**: Beim Öffnen einer Tür mit Gutschein wird der QR-Code automatisch aus dem Gutschein-Code erzeugt
+- **Hochauflösung**: QR-Codes werden mit 120x120px rendert, unterstützen verschiedene Design-Varianten
+
+### QR-Code Konfiguration
+
+**Datei**: `Resources/Private/Partials/Voucher.html`
+
+```html
+<div id="qrcodeElement"></div>
+<script>
+  new QRCode(document.getElementById("qrcodeElement"), {
+    text: "{voucherCode}",
+    width: 120,
+    height: 120,
+    correctLevel: QRCode.CorrectLevel.H
+  });
+</script>
+```
+
+**Parameter**:
+- `text`: Der zu kodierende Gutschein-Code
+- `width`: Breite des QR-Codes (px)
+- `height`: Höhe des QR-Codes (px)
+- `correctLevel`: Fehlerkorrektur-Level (H = High)
+
+### Design-Varianten
+
+Die Extension unterstützt zwei Design-Vorlagen für Gutscheine:
+
+1. **Santa Design** (`template="santa"`)
+   - Weihnachtliches Design mit Santa-Motiven
+   - Spezielle Styling für festliche Optik
+
+2. **Classic Design** (`template="classic"`)
+   - Minimalistisches, neutrales Design
+   - Universell einsetzbar
+
+**CSS Styling**: `Resources/Public/Css/adventskalender.css`
+
+### Download-Funktion
+
+Gutscheine können mit QR-Code als PNG-Datei heruntergeladen werden:
+
+```javascript
+function downloadVoucher() {
+  const voucher = document.getElementById('voucherElement');
+  html2canvas(voucher, {
+    backgroundColor: '#ffffff',
+    scale: 2,
+    logging: false
+  }).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'Gutschein.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+}
+```
+
+Hierfür wird die [html2canvas](https://html2canvas.hertzen.com/) Bibliothek verwendet.
+
+### Backend-Integration
+
+**Datei**: `Classes/Domain/Model/Voucher.php`
+
+- Enthält die Eigenschaft `voucherCode` für den Gutschein-Code
+- Der Code wird vom Backend gespeichert und im Frontend als QR-Code kodiert
+
+**Management**: `Classes/Controller/ManagementController.php`
+- Verwaltung von Gutschein-Daten
+- Zuordnung zu Adventskalender-Türen
+
 ## Externe Bibliotheken
 
 - [Bootstrap Icons](https://icons.getbootstrap.com/) - Icons
 - [Animate.css](https://animate.style/) - Animationen
 - [html2canvas](https://html2canvas.hertzen.com/) - Gutschein-Download
+- [qrcodejs](https://davidshimjs.github.io/qrcodejs/) - QR-Code Generierung
 
 ## Ordnerstruktur
 
