@@ -286,6 +286,56 @@ Die Extension unterstützt vollständige Übersetzungen:
   - typo3/cms-fluid
 - **Relationen**: Door ↔ Voucher (1:1 Beziehung, bidirektional)
 
+## Overview (Übersicht)
+
+Die Übersichtsseite zeigt alle verfügbaren Adventskalender-Türchen in einer tabellarischen Ansicht mit den folgenden Features:
+
+### Übersicht-Features
+
+- **Statistik-Bereich**: Zeigt verfügbare Türchen, noch gesperrte Türchen und das heutige Datum
+- **Tabellarische Darstellung**: Alle Türchen im Überblick mit folgenden Spalten:
+  - **Tag**: Türchen-Nummer mit farbigem Badge
+  - **Titel**: Titel des Türchens
+  - **Beschreibung**: Kurze Beschreibung des Inhalts
+  - **Inhalte**: Badges für verfügbare Inhaltstypen (Gutschein mit Code, Bild, Video, Link)
+  - **Aktion**: Öffnen-Button zum Anschauen des Türchen-Inhalts
+
+### Controller
+**Datei**: `Classes/Controller/OverviewController.php`
+
+- `indexAction()`: Bestimmt basierend auf `displayMode` ob Gitter- oder Listen-Ansicht
+- `listAction()`: Gibt alle verfügbaren (freigegebenen) Türchen in Tabellenform aus
+- `gridAction()`: Alternative Gitter-Darstellung (konfigurierbar)
+
+Alle Aktionen berechnen:
+- `unlockedCount`: Anzahl der verfügbaren Türchen (Tag <= heute)
+- `totalCount`: Gesamtzahl aller Türchen
+- `currentDay`: Heutiges Datum
+
+### Template
+**Datei**: `Resources/Private/Templates/Overview/Index.html`
+
+Die Tabelle zeigt für jedes Türchen:
+- Türchen-Nummer in einem farbigen Badge
+- Titel und Beschreibung
+- Content-Badges (Bilder, Videos, Links, Gutscheine)
+- Öffnen-Button zum Anzeigen des vollständigen Türchen-Inhalts
+
+#### Gutschein-Anzeige in der Übersicht
+
+Wenn ein Türchen einen Gutschein enthält, wird der Gutschein-Code direkt in der Tabelle angezeigt:
+- **Format**: `🎁 Gutschein: [CODE]`
+- **Quelle**: `door.voucher.voucherCode`
+- Der Code wird als farbiges Badge mit grünem Hintergrund dargestellt
+
+### Responsive Design
+
+Die Tabelle ist vollständig responsive:
+- **Desktop**: Vollständige Tabellendarstellung
+- **Mobile**: Optimierte Spaltenbreiten und angepasste Schrift
+- **Farben**: Alternierend eingefärbte Zeilen für bessere Lesbarkeit
+- **Hover-Effekte**: Zeilen heben sich bei Mouseover ab
+
 ## QR-Code Generierung für Gutscheine
 
 Die Adventskalender-Extension generiert automatisch QR-Codes für Gutscheine. Diese ermöglichen es, Gutscheincodes einfach zu scannen und zu validieren.
