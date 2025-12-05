@@ -25,7 +25,7 @@
                             <span class="voucher-name">{voucher.fromName}</span>
                         </div>
                         <div class="voucher-code-section">
-                            <div class="voucher-qrcode" id="qrcode-santa-{voucher.uid}"></div>
+                            <f:comment><div class="voucher-qrcode" id="qrcode-santa-{voucher.uid}"></div></f:comment>
                             <div class="voucher-code-text">
                                 <span class="voucher-code-label">Code:</span>
                                 <span class="voucher-code">{voucher.voucherCode}</span>
@@ -59,7 +59,7 @@
                                 <span class="voucher-name">{voucher.fromName}</span>
                             </div>
                             <div class="voucher-code-section">
-                                <div class="voucher-qrcode" id="qrcode-classic-{voucher.uid}"></div>
+                                <f:comment><div class="voucher-qrcode" id="qrcode-classic-{voucher.uid}"></div></f:comment>
                                 <div class="voucher-code-text">
                                     <span class="voucher-code-label">Code:</span>
                                     <span class="voucher-code">{voucher.voucherCode}</span>
@@ -69,13 +69,13 @@
                         <div class="voucher-footer">
                             <div class="voucher-snowflakes">🎄 ⭐ 🎄 ⭐ 🎄</div>
                         </div>
-                        <div class="voucher-date">0{day}.12.2025</div>
+                        <div class="voucher-date">{day}.12.2025</div>
                     </div>
                 </div>
             </f:else>
         </f:if>
         <div class="voucher-download-container">
-            <button class="voucher-download-btn" onclick="downloadVoucher()">
+            <button class="voucher-download-btn" onclick="downloadVoucher('{voucher.voucherCode}')">
                 <i class="bi bi-download"></i> <f:translate key="LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:voucher.download" />
             </button>
         </div>

@@ -416,7 +416,10 @@
         zonk.play();
     }
     
-    function downloadVoucher() {
+    function downloadVoucher(code) {
+        const codegutschein = code;
+        console.log(code);
+        alert('Gutschein wird heruntergeladen...');
          const voucher = document.getElementById('voucherElement');
          if (!voucher) return;
          
