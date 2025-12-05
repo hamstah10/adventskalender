@@ -1,5 +1,4 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-    <f:debug>{_all}</f:debug>
 <head>
     <title>Adventskalender Übersicht</title>
     <style>
@@ -201,6 +200,11 @@
             color: #664d03;
         }
 
+        .badge.with-audio {
+            background-color: #e7d4f5;
+            color: #5a189a;
+        }
+
         .badge.with-link {
             background-color: #f8d7da;
             color: #842029;
@@ -233,7 +237,7 @@
             <p>Alle verfügbaren Inhalte im Überblick</p>
         </div>
 
-        <div class="overview-stats">
+        <div class="overview-stats d-none">
             <div class="stat-card">
                 <div class="stat-number">{unlockedCount}</div>
                 <div class="stat-label">Verfügbare Türchen</div>
@@ -257,7 +261,8 @@
                             <th>Titel</th>
                             <th>Beschreibung</th>
                             <th>Inhalte</th>
-                            
+                            <th style="width: 150px;">Geöffnet am</th>
+                            <th style="width: 100px;">Aktion</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -285,14 +290,34 @@
                                         <f:if condition="{door.video}">
                                             <span class="badge with-video">🎬 Video</span>
                                         </f:if>
+                                        <f:if condition="{door.audio}">
+                                            <span class="badge with-audio">🎵 Audio</span>
+                                        </f:if>
                                         <f:if condition="{door.link}">
                                             <span class="badge with-link">🔗 Link</span>
                                         </f:if>
                                     </div>
-                                </td>
-                               
-                            </tr>
-                        </f:for>
+                                    </td>
+                                    <td>
+                                    <f:if condition="{door.openedAtTime}">
+                                        <f:then>
+                                            <f:format.date format="d.m.Y H:i">{door.openedAtTime -> f:format.date(format: 'U')}</f:format.date>
+                                        </f:then>
+                                        <f:else>
+                                            —
+                                        </f:else>
+                                    </f:if>
+                                    </td>
+                                    <td>
+                                    <f:variable name="doorLink">
+                                        <f:uri.page pageUid="1" additionalParams="{tx_adventskalender_calendar: {action: 'show', controller: 'Adventskalender', door: door.uid}}" />
+                                    </f:variable>
+                                    <a href="{doorLink}" class="btn btn-primary">
+                                        <span class="icon">➜</span>Öffnen
+                                    </a>
+                                    </td>
+                                    </tr>
+                                    </f:for>
                     </tbody>
                 </table>
             </f:then>

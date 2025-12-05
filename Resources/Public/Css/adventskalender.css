@@ -288,6 +288,17 @@
     filter: brightness(1.1);
 }
 
+.door-card.past-door {
+    opacity: 0.6;
+    filter: grayscale(0.5);
+}
+
+.door-card.past-door:hover {
+    opacity: 0.75;
+    filter: grayscale(0.3);
+    transform: translateY(-5px) rotate(1deg);
+}
+
 @keyframes glow-christmas {
     0%, 100% {
         box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 4px 15px rgba(0, 0, 0, 0.3);

@@ -7,11 +7,13 @@ namespace Hamstah\Adventskalender\Controller;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use Hamstah\Adventskalender\Domain\Repository\DoorRepository;
+use Hamstah\Adventskalender\Domain\Repository\DoorLogRepository;
 
 class OverviewController extends ActionController
 {
     public function __construct(
-        private readonly DoorRepository $doorRepository
+        private readonly DoorRepository $doorRepository,
+        private readonly DoorLogRepository $doorLogRepository
     ) {}
 
     public function indexAction(): ResponseInterface
@@ -43,8 +45,18 @@ class OverviewController extends ActionController
             return (int)$a->getDay() <=> (int)$b->getDay();
         });
 
-        $this->view->assign('doors', $unlockedDoors);
-        $this->view->assign('unlockedCount', count($unlockedDoors));
+        // Add opening times to each door
+        $doorsWithLogs = array_map(function ($door) {
+            $logs = $this->doorLogRepository->findByDoor($door->getUid());
+            if ($logs->count() > 0) {
+                $firstLog = $logs->getFirst();
+                $door->openedAtTime = $firstLog->getOpenedAt();
+            }
+            return $door;
+        }, $unlockedDoors);
+
+        $this->view->assign('doors', $doorsWithLogs);
+        $this->view->assign('unlockedCount', count($doorsWithLogs));
         $this->view->assign('totalCount', count($doors));
         $this->view->assign('currentDay', $currentDay);
         $this->view->assign('currentMonth', $currentMonth);

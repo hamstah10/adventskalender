@@ -19,9 +19,10 @@
                         <label>LLL:EXT:adventskalender/Resources/Private/Language/locallang_db.xlf:flexform.customDescription</label>
                         <config>
                             <type>text</type>
+                            <enableRichtext>1</enableRichtext>
+                            <richtextConfiguration>default</richtextConfiguration>
                             <cols>40</cols>
-                            <rows>3</rows>
-                            <eval>trim</eval>
+                            <rows>5</rows>
                         </config>
                     </settings.customDescription>
                     <settings.layoutType>

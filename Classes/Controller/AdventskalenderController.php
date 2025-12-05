@@ -6,6 +6,7 @@ namespace Hamstah\Adventskalender\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use Hamstah\Adventskalender\Domain\Repository\DoorRepository;
 use Hamstah\Adventskalender\Domain\Repository\DoorLogRepository;
 use Hamstah\Adventskalender\Domain\Model\DoorLog;
@@ -16,7 +17,8 @@ class AdventskalenderController extends ActionController
 
     public function __construct(
         private readonly DoorRepository $doorRepository,
-        private readonly DoorLogRepository $doorLogRepository
+        private readonly DoorLogRepository $doorLogRepository,
+        private readonly PersistenceManager $persistenceManager
     ) {}
 
     public function listAction(): ResponseInterface
@@ -83,6 +85,7 @@ class AdventskalenderController extends ActionController
         $doorLog->setReferer($_SERVER['HTTP_REFERER'] ?? '');
 
         $this->doorLogRepository->add($doorLog);
+        $this->persistenceManager->persistAll();
     }
 
     private function getClientIpAddress(): string

@@ -55,7 +55,10 @@
                     <span class="christmas-icon">🎄</span>
                 </h1>
                 <p class="lead animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-                    {f:if(condition: '{settings.customDescription}', then: '{settings.customDescription}', else: '{f:translate(key: \'LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:subtitle\')}')}
+                    <f:if condition="{settings.customDescription}">
+                        <f:then>{settings.customDescription -> f:format.html()}</f:then>
+                        <f:else>{f:translate(key: 'LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:subtitle')}</f:else>
+                    </f:if>
                 </p>
             </div>
             
@@ -67,9 +70,9 @@
                                       <div class="door-item col-6 col-sm-4 col-md-3 col-lg-2 animate__animated animate__fadeInUp animate__faster door-item-{iterator.index}">
                                           <f:if condition="{currentMonth} == 12 AND {door.day} <= {currentDay}">
                                                      <f:then>
-<f:variable name="customStyleAttr"><f:if condition="{door.customStyle}">background: linear-gradient(135deg, {door.customColorStart} 0%, {door.customColorEnd} 100%);<f:if condition="{door.customBorderWidth} > 0"> border: {door.customBorderWidth}px solid {door.customBorderColor};</f:if></f:if></f:variable>
-                                                <a href="#" class="door-card ribbon-box unlocked text-decoration-none {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.customStyle}', then: 'custom-style')}" onclick="openLightbox({door.uid}); return false;" style="{customStyleAttr}">
-                                                  <div class="ribbon-two ribbon-two-primary"><span>🔥</span></div>
+                                                     <f:variable name="customStyleAttr"><f:if condition="{door.customStyle}">background: linear-gradient(135deg, {door.customColorStart} 0%, {door.customColorEnd} 100%);<f:if condition="{door.customBorderWidth} > 0"> border: {door.customBorderWidth}px solid {door.customBorderColor};</f:if></f:if></f:variable>
+                                                                <a href="#" class="door-card {f:if(condition: '{door.day} == {currentDay}', then: 'ribbon-box')} unlocked text-decoration-none {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.customStyle}', then: 'custom-style')} {f:if(condition: '{door.day} != {currentDay}', then: 'past-door')}" onclick="openLightbox({door.uid}); return false;" style="{customStyleAttr}">
+                                                                   <f:if condition="{door.day} == {currentDay}"><div class="ribbon-two ribbon-two-primary"><span>🔥</span></div></f:if>
                                                     <div class="door-inner">
                                                         <div class="door-number-badge {f:if(condition: '{door.day} == 24', then: 'bg-warning', else: 'bg-success')}">{door.day}</div>
                                                         <f:switch expression="{door.day}">
@@ -131,7 +134,7 @@
                          <f:if condition="{door.day} == {dayNumber}">
                              <f:if condition="{currentMonth} == 12 AND {door.day} <= {currentDay}">
                                  <f:then>
-                                     <a href="#" class="calendar-door unlocked {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')}" onclick="openLightbox({door.uid}); return false;">
+                                     <a href="#" class="calendar-door unlocked {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.day} != {currentDay}', then: 'past-door')}" onclick="openLightbox({door.uid}); return false;">
                                          <div class="calendar-door-inner">
                                              <div class="calendar-door-number">{door.day}</div>
                                              <f:switch expression="{door.day}">
@@ -273,6 +276,14 @@
              .calendar-door.locked .calendar-door-icon {
                  font-size: 1.5em;
              }
+             .calendar-door.past-door .calendar-door-inner {
+                 opacity: 0.6;
+                 filter: grayscale(0.5);
+             }
+             .calendar-door.past-door:hover .calendar-door-inner {
+                 opacity: 0.75;
+                 filter: grayscale(0.3);
+             }
              @media (max-width: 768px) {
                  .calendar-grid {
                      grid-template-columns: repeat(4, 1fr) !important;
@@ -349,7 +360,7 @@
                                 
                                 <f:if condition="{door.audio}">
                                     <div class="door-audio mb-4">
-                                        <audio controls autoplay class="w-100">
+                                        <audio controls class="w-100">
                                             <source src="{door.audio.originalResource.publicUrl}" type="{door.audio.originalResource.mimeType}">
                                             Dein Browser unterstützt keine Audio-Dateien.
                                         </audio>
@@ -372,9 +383,10 @@
                                 
                                 <f:if condition="{door.link}">
                                     <div class="door-link text-center">
-                                        <a href="{door.link}" target="_blank" class="btn btn-outline-danger btn-lg">
+                                        <f:link.typolink parameter="{door.link}" class="btn btn-outline-danger btn-lg">
                                             <i class="bi bi-link-45deg"></i> <f:translate key="LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:link.open" />
-                                        </a>
+                                        </f:link.typolink>
+                                       
                                     </div>
                                 </f:if>
                                     </div>
@@ -394,7 +406,7 @@
                                 
                                 <f:if condition="{door.video}">
                                     <div class="door-video mb-4 text-center">
-                                        <video controls autoplay muted class="w-100 rounded shadow" style="max-height: 400px;">
+                                        <video controls autoplay muted class="w-100 rounded shadow" >
                                             <source src="{door.video.originalResource.publicUrl}" type="{door.video.originalResource.mimeType}">
                                             Dein Browser unterstützt keine Videos.
                                         </video>
@@ -403,7 +415,7 @@
                                 
                                 <f:if condition="{door.audio}">
                                     <div class="door-audio mb-4">
-                                        <audio controls autoplay class="w-100">
+                                        <audio controls class="w-100">
                                             <source src="{door.audio.originalResource.publicUrl}" type="{door.audio.originalResource.mimeType}">
                                             Dein Browser unterstützt keine Audio-Dateien.
                                         </audio>
@@ -426,9 +438,10 @@
                                 
                                 <f:if condition="{door.link}">
                                     <div class="door-link text-center">
-                                        <a href="{door.link}" target="_blank" class="btn btn-outline-danger btn-lg">
+                                        <f:link.typolink parameter="{door.link}" class="btn btn-outline-danger btn-lg">
                                             <i class="bi bi-link-45deg"></i> <f:translate key="LLL:EXT:adventskalender/Resources/Private/Language/locallang.xlf:link.open" />
-                                        </a>
+                                        </f:link.typolink>
+                                        
                                     </div>
                                 </f:if>
                                     </div>

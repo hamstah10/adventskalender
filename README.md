@@ -428,78 +428,143 @@ Hierfür wird die [html2canvas](https://html2canvas.hertzen.com/) Bibliothek ver
 adventskalender/
 ├── Classes/
 │   ├── Controller/
-│   │   ├── AdventskalenderController.php (Anzeige)
-│   │   └── ManagementController.php (Frontend-Verwaltung)
+│   │   ├── AdventskalenderController.php
+│   │   │   └── Einzelnes Türchen mit Lightbox, Musik, Sound-Effekten
+│   │   ├── OverviewController.php
+│   │   │   └── Übersicht mit Gitter- oder Listen-Ansicht aller Türchen
+│   │   └── ManagementController.php
+│   │       └── Frontend-Verwaltung für Türchen und Gutscheine
 │   ├── Dashboard/
-│   │   └── DoorWidget.php (Dashboard Widget)
+│   │   └── DoorWidget.php
+│   │       └── Statistik-Widget für TYPO3 Dashboard
 │   ├── Domain/
 │   │   ├── Model/
 │   │   │   ├── Door.php
+│   │   │   │   └── Türchen-Datenmodell mit Medien, Links, Gutscheine
 │   │   │   └── Voucher.php
+│   │   │       └── Gutschein-Datenmodell mit QR-Code-Support
 │   │   └── Repository/
-│   │       └── DoorRepository.php
+│   │       ├── DoorRepository.php
+│   │       │   └── Datenbankzugriffe für Türchen
+│   │       └── VoucherRepository.php (optional)
+│   │           └── Datenbankzugriffe für Gutscheine
 │   └── Hooks/
 │       └── PageRendererHook.php
+│           └── Backend-Integration, CSS/JS-Loading
 ├── Configuration/
 │   ├── FlexForms/
-│   │   ├── PluginSettings.xml (Anzeige-Plugin)
-│   │   └── ManagementSettings.xml (Management-Plugin)
+│   │   ├── PluginSettings.xml
+│   │   │   └── Konfiguration für Anzeige-Plugin
+│   │   ├── OverviewSettings.xml
+│   │   │   └── Konfiguration für Übersicht-Plugin
+│   │   └── ManagementSettings.xml
+│   │       └── Konfiguration für Management-Plugin
 │   ├── Sets/
 │   │   └── Adventskalender/
 │   │       ├── config.yaml
+│   │       │   └── Set-Definition für Site Manager
 │   │       ├── setup.typoscript
+│   │       │   └── TypoScript-Konfiguration
 │   │       └── settings.definitions.typoscript
+│   │           └── Definiert alle anpassbaren Einstellungen
 │   └── TCA/
 │       ├── Overrides/
 │       │   └── tt_content.php
+│       │       └── Plugin-Registrierung im Content-Element
 │       ├── tx_adventskalender_domain_model_door.php
+│       │   └── Datenbankfeld-Definition für Türchen
 │       └── tx_adventskalender_domain_model_voucher.php
+│           └── Datenbankfeld-Definition für Gutscheine
 ├── Resources/
 │   ├── Private/
 │   │   ├── Language/
 │   │   │   ├── locallang.xlf
+│   │   │   │   └── Frontend-Übersetzungen (EN)
 │   │   │   ├── de.locallang.xlf
+│   │   │   │   └── Frontend-Übersetzungen (DE)
 │   │   │   ├── ru.locallang.xlf
+│   │   │   │   └── Frontend-Übersetzungen (RU)
 │   │   │   ├── locallang_db.xlf
+│   │   │   │   └── Backend-Übersetzungen
 │   │   │   └── locallang_dashboard.xlf
+│   │   │       └── Dashboard-Widget-Übersetzungen
 │   │   ├── Layouts/
 │   │   │   └── Default.html
+│   │   │       └── Basis-Layout für alle Templates
 │   │   ├── Partials/
 │   │   │   └── Voucher.html
+│   │   │       └── Wiederverwendbare Gutschein-Komponente mit QR-Code
 │   │   └── Templates/
 │   │       ├── Adventskalender/
-│   │       │   └── List.html (Anzeige-Template)
+│   │       │   └── List.html
+│   │       │       └── Single-Door Anzeige mit Lightbox
+│   │       ├── Overview/
+│   │       │   ├── Index.html
+│   │       │   │   └── Tabellen-Übersicht aller Türchen
+│   │       │   └── Grid.html (optional)
+│   │       │       └── Gitter-Ansicht alternativ zur Tabelle
 │   │       └── Management/
-│   │           ├── Index.html (Übersicht)
-│   │           ├── Edit.html (Bearbeiten)
-│   │           └── New.html (Erstellen)
+│   │           ├── Index.html
+│   │           │   └── Türchen- und Gutschein-Übersichtstabelle
+│   │           ├── Edit.html
+│   │           │   └── Bearbeitungsformular für Türchen
+│   │           ├── New.html
+│   │           │   └── Formular zum Erstellen neuer Türchen
+│   │           └── CreateVoucher.html
+│   │               └── Gutschein-Erstellung mit Vorschau
 │   └── Public/
 │       ├── Animations/
 │       │   ├── santa-sleigh.html
+│       │   │   └── SVG-Animation für Schlitten
 │       │   └── santa-sleigh.css
+│       │       └── Styling und Keyframes für Animation
 │       ├── Css/
 │       │   ├── adventskalender.css
-│       │   └── dashboard.css
+│       │   │   └── Hauptstyles (Türchen, Lightbox, Tabelle, Responsiv)
+│       │   ├── dashboard.css
+│       │   │   └── Dashboard-Widget-Styling
+│       │   └── management.css (optional)
+│       │       └── Management-Plugin-Styling
 │       ├── Icons/
 │       │   ├── Extension.svg
+│       │   │   └── Extension-Icon für Backend
 │       │   ├── door.svg
+│       │   │   └── Türchen-Icon
 │       │   └── voucher.svg
+│       │       └── Gutschein-Icon
 │       ├── Images/
 │       │   ├── pferd.png
+│       │   │   └── Dekoration (Pferd)
 │       │   └── renntier.png
+│       │       └── Dekoration (Rentier)
 │       ├── JavaScript/
-│       │   └── adventskalender.js
+│       │   ├── adventskalender.js
+│       │   │   └── Hauptscript (Musik, Sound, Interaktionen)
+│       │   ├── qrcode.js
+│       │   │   └── QR-Code Generierung
+│       │   └── html2canvas.js
+│       │       └── Gutschein-Download-Funktion
 │       └── Music/
 │           ├── song_christmas.mp3
+│           │   └── Hintergrundmusik
 │           └── Zonk-sound.mp3
+│               └── Sound-Effekt für gesperrte Türchen
 ├── composer.json
+│   └── Projekt-Metadaten und PHP-Abhängigkeiten
 ├── ext_emconf.php
+│   └── TYPO3 Extension Meta-Informationen
 ├── ext_localconf.php
+│   └── Runtime-Konfiguration für TYPO3
 ├── ext_tables.sql
+│   └── SQL-Datenbankschema Definition
 ├── MANAGEMENT_PLUGIN.md
+│   └── Ausführliche Dokumentation des Management-Plugins
 ├── README.md
+│   └── Hauptdokumentation
 ├── LICENSE
+│   └── GPL-2.0-or-later Lizenz
 └── CHANGELOG.md
+    └── Versionsverlauf und Änderungshistorie
 ```
 
 ## TER Upload Checkliste
