@@ -6,7 +6,7 @@ namespace Hamstah\Adventskalender\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use Hamstah\Adventskalender\Domain\Repository\DoorRepository;
 use Hamstah\Adventskalender\Domain\Repository\DoorLogRepository;
 use Hamstah\Adventskalender\Domain\Model\DoorLog;
@@ -18,7 +18,7 @@ class AdventskalenderController extends ActionController
     public function __construct(
         private readonly DoorRepository $doorRepository,
         private readonly DoorLogRepository $doorLogRepository,
-        private readonly PersistenceManager $persistenceManager
+        private readonly ConnectionPool $connectionPool
     ) {}
 
     public function listAction(): ResponseInterface
@@ -75,17 +75,24 @@ class AdventskalenderController extends ActionController
         return $this->htmlResponse();
     }
 
+    public function logOpenAction(int $door): ResponseInterface
+    {
+        $this->logDoorOpening($door);
+        return $this->response->withStatus(204);
+    }
+
     private function logDoorOpening(int $doorUid): void
     {
-        $doorLog = new DoorLog();
-        $doorLog->setDoor($doorUid);
-        $doorLog->setOpenedAt((int)time());
-        $doorLog->setIpAddress($this->getClientIpAddress());
-        $doorLog->setUserAgent($_SERVER['HTTP_USER_AGENT'] ?? '');
-        $doorLog->setReferer($_SERVER['HTTP_REFERER'] ?? '');
-
-        $this->doorLogRepository->add($doorLog);
-        $this->persistenceManager->persistAll();
+        $connection = $this->connectionPool->getConnectionForTable('tx_adventskalender_domain_model_doorlog');
+        $connection->insert('tx_adventskalender_domain_model_doorlog', [
+            'door' => $doorUid,
+            'opened_at' => time(),
+            'ip_address' => $this->getClientIpAddress(),
+            'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? '',
+            'referer' => $_SERVER['HTTP_REFERER'] ?? '',
+            'tstamp' => time(),
+            'crdate' => time(),
+        ]);
     }
 
     private function getClientIpAddress(): string

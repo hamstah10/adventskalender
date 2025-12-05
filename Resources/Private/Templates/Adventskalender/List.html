@@ -71,7 +71,7 @@
                                           <f:if condition="{currentMonth} == 12 AND {door.day} <= {currentDay}">
                                                      <f:then>
                                                      <f:variable name="customStyleAttr"><f:if condition="{door.customStyle}">background: linear-gradient(135deg, {door.customColorStart} 0%, {door.customColorEnd} 100%);<f:if condition="{door.customBorderWidth} > 0"> border: {door.customBorderWidth}px solid {door.customBorderColor};</f:if></f:if></f:variable>
-                                                                <a href="#" class="door-card {f:if(condition: '{door.day} == {currentDay}', then: 'ribbon-box')} unlocked text-decoration-none {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.customStyle}', then: 'custom-style')} {f:if(condition: '{door.day} != {currentDay}', then: 'past-door')}" onclick="openLightbox({door.uid}); return false;" style="{customStyleAttr}">
+                                                                <a href="#" class="door-card {f:if(condition: '{door.day} == {currentDay}', then: 'ribbon-box')} unlocked text-decoration-none {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.customStyle}', then: 'custom-style')} {f:if(condition: '{door.day} != {currentDay}', then: 'past-door')}" onclick="logDoorOpen({door.uid}); openLightbox({door.uid}); return false;" style="{customStyleAttr}">
                                                                    <f:if condition="{door.day} == {currentDay}"><div class="ribbon-two ribbon-two-primary"><span>🔥</span></div></f:if>
                                                     <div class="door-inner">
                                                         <div class="door-number-badge {f:if(condition: '{door.day} == 24', then: 'bg-warning', else: 'bg-success')}">{door.day}</div>
@@ -134,7 +134,7 @@
                          <f:if condition="{door.day} == {dayNumber}">
                              <f:if condition="{currentMonth} == 12 AND {door.day} <= {currentDay}">
                                  <f:then>
-                                     <a href="#" class="calendar-door unlocked {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.day} != {currentDay}', then: 'past-door')}" onclick="openLightbox({door.uid}); return false;">
+                                     <a href="#" class="calendar-door unlocked {f:if(condition: '{door.day} == 24', then: 'special-christmas')} {f:if(condition: '{door.day} == 6', then: 'special-nikolaus')} {f:if(condition: '{door.day} != {currentDay}', then: 'past-door')}" onclick="logDoorOpen({door.uid}); openLightbox({door.uid}); return false;">
                                          <div class="calendar-door-inner">
                                              <div class="calendar-door-number">{door.day}</div>
                                              <f:switch expression="{door.day}">
@@ -506,7 +506,15 @@
                  link.click();
              });
          }
-        
+         
+         function logDoorOpen(doorUid) {
+             const pageId = window.location.pathname.split('/').pop() || window.location.search;
+             const currentUrl = window.location.href;
+             
+             fetch(currentUrl + (currentUrl.includes('?') ? '&' : '?') + 'tx_adventskalender_calendar[action]=logOpen&tx_adventskalender_calendar[door]=' + doorUid, {
+                 method: 'POST'
+             }).catch(err => console.log('Log error:', err));
+         }
 
          </script>
          

@@ -13,10 +13,10 @@ ExtensionUtility::configurePlugin(
     'Adventskalender',
     'Calendar',
     [
-        AdventskalenderController::class => 'list, show',
+        AdventskalenderController::class => 'list, show, logOpen',
     ],
     [
-        AdventskalenderController::class => 'show',
+        AdventskalenderController::class => 'show, logOpen',
     ]
 );
 
