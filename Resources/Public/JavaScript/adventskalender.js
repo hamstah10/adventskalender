@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+    /*
     function createSnowflake() {
         const snowflake = document.createElement('div');
         snowflake.classList.add('snowflake');
@@ -43,5 +43,5 @@ document.addEventListener('DOMContentLoaded', function() {
     
     for (let i = 0; i < 30; i++) {
         setTimeout(createSnowflake, i * 300);
-    }
+    }*/
 });

@@ -210,6 +210,30 @@
             color: #842029;
         }
 
+        .voucher-column {
+            font-size: 13px;
+        }
+
+        .voucher-info {
+            background-color: #f9f3e6;
+            padding: 8px;
+            border-radius: 4px;
+            border-left: 3px solid #ff9800;
+        }
+
+        .voucher-code {
+            font-family: monospace;
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 5px;
+        }
+
+        .voucher-description {
+            color: #555;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
         @media (max-width: 768px) {
             .overview-container {
                 padding: 20px 10px;
@@ -261,6 +285,7 @@
                             <th>Titel</th>
                             <th>Beschreibung</th>
                             <th>Inhalte</th>
+                            <th style="width: 200px;">Gutschein</th>
                             <th style="width: 150px;">Geöffnet am</th>
                             <th style="width: 100px;">Aktion</th>
                         </tr>
@@ -297,6 +322,21 @@
                                             <span class="badge with-link">🔗 Link</span>
                                         </f:if>
                                     </div>
+                                    </td>
+                                    <td class="voucher-column">
+                                    <f:if condition="{door.voucher}">
+                                        <f:then>
+                                            <div class="voucher-info">
+                                                <div class="voucher-code">Code: {door.voucher.voucherCode}</div>
+                                                <f:if condition="{door.voucher.description}">
+                                                    <div class="voucher-description">{door.voucher.description}</div>
+                                                </f:if>
+                                            </div>
+                                        </f:then>
+                                        <f:else>
+                                            —
+                                        </f:else>
+                                    </f:if>
                                     </td>
                                     <td>
                                     <f:if condition="{door.openedAtTime}">
